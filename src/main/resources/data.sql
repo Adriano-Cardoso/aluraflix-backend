@@ -1,0 +1,3 @@
+INSERT INTO TB_VIDEO(video_id, titulo, descricao,url) VALUES(1,'Curso de Java- Iniciando', 'Curso de Java para iniciantes', 'http://testewa.com.br');
+INSERT INTO TB_VIDEO(video_id, titulo, descricao,url) VALUES(2,'Curso de Python- Iniciando', 'Curso de Java para iniciantes', 'http://testewa.com.br');
+INSERT INTO TB_VIDEO(video_id, titulo, descricao,url) VALUES(3,'Curso de Java- OO', 'Curso de Java para iniciantes', 'http://testewa.com.br');
