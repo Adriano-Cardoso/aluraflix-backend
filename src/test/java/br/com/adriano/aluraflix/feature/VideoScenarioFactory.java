@@ -15,24 +15,26 @@ public class VideoScenarioFactory {
 	public static final Video FIND_BY_ID = loadByIdVideo();
 	public static final VideoResponse FIND_VIDEOS = findVideos();
 	public static final VideoRequest REQUEST_EXISTS = createExistsRequest();
-	public static final VideoUpdateRequest UPDATE = updateRequest();
+	public static final VideoUpdateRequest VIDEO_UPDATE = updateRequest();
 	public static final Video VIDEOS = createVideos();
 	public static final VideoRequest CREATE_REQUEST = createNewRequest();
+	public static final VideoResponse VIDEO_RESPONSE = createExistsControllerRequest();
 
 	private static List<VideoResponse> loadVideos() {
-		VideoResponse video = new VideoResponse();
+		VideoResponse video = new VideoResponse(4L, "Curso de Java- Iniciando", "Curso de Java para iniciantes", "http://testewa.com.br");
 		List<VideoResponse> list = new ArrayList<>();
-		video.getVideoId();
-		video.getTitle();
-		video.getDescription();
-		video.getUrl();
 		list.add(video);
 		return list;
 	}
 
+	private static VideoResponse createExistsControllerRequest() {
+		VideoResponse videoResponse = new VideoResponse(4L, "Curso de QA", "Aprendnedo QA", "http://test.com");
+		return videoResponse;
+	}
+
 	private static VideoRequest createNewRequest() {
-		VideoRequest request = new VideoRequest("Curso de kambam", "Curso iniciante", "http://test.com");
-		return request;
+		VideoRequest videoRequest = new VideoRequest("Curso de kambam", "Curso iniciante", "http://test.com");
+		return videoRequest;
 	}
 
 	private static Video createVideos() {
@@ -47,8 +49,8 @@ public class VideoScenarioFactory {
 	}
 
 	private static VideoUpdateRequest updateRequest() {
-		VideoUpdateRequest video = new VideoUpdateRequest("Curso de banco de dados", "http://testesbd.com");
-		return video;
+		VideoUpdateRequest videoRequest = new VideoUpdateRequest("Curso de banco de dados", "http://testesbd.com");
+		return videoRequest;
 	}
 
 	private static VideoRequest createExistsRequest() {

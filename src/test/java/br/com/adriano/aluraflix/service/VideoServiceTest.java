@@ -106,7 +106,7 @@ public class VideoServiceTest {
 
 		when(this.videoRepository.findById(any())).thenReturn(Optional.of(VideoScenarioFactory.VIDEOS));
 
-		VideoResponse videoUpdate = this.videoService.update(1L, VideoScenarioFactory.UPDATE);
+		VideoResponse videoUpdate = this.videoService.update(1L, VideoScenarioFactory.VIDEO_UPDATE);
 
 		assertNotNull(videoUpdate);
 	}
@@ -117,7 +117,7 @@ public class VideoServiceTest {
 
 		when(this.videoRepository.findById(any())).thenReturn(Optional.empty());
 
-		assertThrows(BusinessException.class, () -> videoService.update(10L, VideoScenarioFactory.UPDATE));
+		assertThrows(BusinessException.class, () -> videoService.update(10L, VideoScenarioFactory.VIDEO_UPDATE));
 	}
 
 }

@@ -8,9 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +26,7 @@ import lombok.AllArgsConstructor;
 @Api(value = "Video Endpoint", description = "Description for video", tags = { "Video Endpoint" })
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/v1/videos")
+@RequestMapping("/videos")
 public class VideoController {
 
 	private VideoService videoService;
@@ -46,22 +46,22 @@ public class VideoController {
 
 	@ApiOperation(value = "create new video")
 	@PostMapping
-	public ResponseEntity<VideoResponse> cadastrarCliente(@Valid @RequestBody VideoRequest videoRequest) {
+	public ResponseEntity<VideoResponse> create(@Valid @RequestBody VideoRequest videoRequest) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(this.videoService.create(videoRequest));
 	}
 
 	@ApiOperation(value = "update video")
-	@PutMapping("/{videoId}")
+	@PatchMapping("/{videoId}")
 	public ResponseEntity<VideoResponse> update(@RequestBody @Valid VideoUpdateRequest videoUpdateRequest,
 			@PathVariable("videoId") Long videoId) {
-		return ResponseEntity.ok(this.videoService.update(videoId, videoUpdateRequest));
+		return ResponseEntity.status(HttpStatus.OK).body(this.videoService.update(videoId, videoUpdateRequest));
 	}
     
 	@ApiOperation(value = "delete video")
 	@DeleteMapping("/{videoId}")
 	public ResponseEntity<VideoResponse> delete(@Valid @PathVariable("videoId") Long videoId) {
 		this.videoService.delete(videoId);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
 }
