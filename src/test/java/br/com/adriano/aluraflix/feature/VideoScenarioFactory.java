@@ -10,18 +10,17 @@ import br.com.adriano.aluraflix.domain.dto.response.VideoResponse;
 
 public class VideoScenarioFactory {
 
-	public static final VideoRequest REQUEST = createRequest();
 	public static final List<VideoResponse> LIST_ALL = loadVideos();
 	public static final Video FIND_BY_ID = loadByIdVideo();
 	public static final VideoResponse FIND_VIDEOS = findVideos();
-	public static final VideoRequest REQUEST_EXISTS = createExistsRequest();
 	public static final VideoUpdateRequest VIDEO_UPDATE = updateRequest();
 	public static final Video VIDEOS = createVideos();
 	public static final VideoRequest CREATE_REQUEST = createNewRequest();
 	public static final VideoResponse VIDEO_RESPONSE = createExistsControllerRequest();
 
 	private static List<VideoResponse> loadVideos() {
-		VideoResponse video = new VideoResponse(4L, "Curso de Java- Iniciando", "Curso de Java para iniciantes", "http://testewa.com.br");
+		VideoResponse video = new VideoResponse(4L, "Curso de Java- Iniciando", "Curso de Java para iniciantes",
+				"http://testewa.com.br");
 		List<VideoResponse> list = new ArrayList<>();
 		list.add(video);
 		return list;
@@ -43,20 +42,9 @@ public class VideoScenarioFactory {
 		return video;
 	}
 
-	private static VideoRequest createRequest() {
-		return VideoRequest.builder().title("titulo").description("descricao")
-				.url("http://test.com.br").build();
-	}
-
 	private static VideoUpdateRequest updateRequest() {
 		VideoUpdateRequest videoRequest = new VideoUpdateRequest("Curso de banco de dados", "http://testesbd.com");
 		return videoRequest;
-	}
-
-	private static VideoRequest createExistsRequest() {
-
-		return VideoRequest.builder().title("Curso de Python- Iniciando").description("Curso de Java para iniciantes")
-				.url("http://testewa.com.br").build();
 	}
 
 	private static VideoResponse findVideos() {

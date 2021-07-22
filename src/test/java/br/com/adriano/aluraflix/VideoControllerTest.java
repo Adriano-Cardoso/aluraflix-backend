@@ -38,7 +38,7 @@ public class VideoControllerTest {
 	private MockMvc mockMvc;
 
 	@Test
-	@DisplayName("Listar todos os videos")
+	@DisplayName("Listar todos os vídeos")
 	public void listaAllVideos_WhenListIsValid_ExpectedOk() throws Exception {
 		when(this.videoService.listAllVideos()).thenReturn(VideoScenarioFactory.LIST_ALL);
 		this.mockMvc.perform(get("/videos")).andExpect(status().isOk())
@@ -46,7 +46,7 @@ public class VideoControllerTest {
 	}
 
 	@Test
-	@DisplayName("Lista video pelo Id")
+	@DisplayName("Lista vídeos pelo Id")
 	public void findVideoId_WhenIdIsValid_ExpectedOk() throws Exception {
 		when(this.videoService.findByVideoId(4L)).thenReturn(VideoScenarioFactory.FIND_VIDEOS);
 		this.mockMvc.perform(get("/videos/4")).andExpect(status().isOk())
@@ -54,7 +54,7 @@ public class VideoControllerTest {
 	}
 
 	@Test
-	@DisplayName("Criar novo video com nome v�lido")
+	@DisplayName("Criar novo vídeos com nome válido")
 	public void createVideo_WhenCreateVideoTitleNotExists_ExpectedCreate() throws Exception {
 
 		when(this.videoService.create(any())).thenReturn(VideoScenarioFactory.VIDEO_RESPONSE);
@@ -63,7 +63,7 @@ public class VideoControllerTest {
 	}
 
 	@Test
-	@DisplayName("Atualiza video com Id v�lido")
+	@DisplayName("Atualiza vídeos com Id v�válido")
 	public void updateVideo_WhenUpdateVideoIdExists_ExpectedUpdate() throws Exception {
 
 		when(this.videoService.update(anyLong(), any())).thenReturn(VideoScenarioFactory.VIDEO_RESPONSE);
@@ -73,7 +73,7 @@ public class VideoControllerTest {
 	}
 
 	@Test
-	@DisplayName("deletar video com Id v�lido")
+	@DisplayName("deletar vídeos com Id válido")
 	public void delete_WhenPathVariableIsValid_ExpectedOk() throws Exception {
 
 		doNothing().when(videoService).delete(4L);
@@ -82,7 +82,7 @@ public class VideoControllerTest {
 	}
 
 	@Test
-	@DisplayName("deletar video com Id v�lido")
+	@DisplayName("deletar vídeos com Id válido")
 	public static String asJsonString(final Object obj) {
 		try {
 			return new ObjectMapper().writeValueAsString(obj);

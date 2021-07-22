@@ -27,7 +27,7 @@ public class ConfigSwagger {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfo("Rest API AluraFlix Spring Boot", "Descricao", "v1", "Terms Of Service Url",
+		return new ApiInfo("Rest API AluraFlix Spring Boot", "Plataforma para conpartilhamento de videos", "v1", "Terms Of Service Url",
 				new Contact("Adriano Cardoso", "https://github.com/Adriano-Cardoso", "goularta97@gmail.com"), "Liscense of API",
 				"License of URL", Collections.emptyList());
 	}

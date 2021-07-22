@@ -20,7 +20,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @Getter
-@Setter
 @Table(name = "TB_VIDEO")
 @Entity
 public class Video {

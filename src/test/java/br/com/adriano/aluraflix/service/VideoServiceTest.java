@@ -31,7 +31,7 @@ public class VideoServiceTest {
 	private VideoRepository videoRepository;
 
 	@Test
-	@DisplayName("Listar todos os videos")
+	@DisplayName("Listar todos os vÃ­deos")
 	public void listAllVideos_WhenListValid_ExpectedOk() {
 		when(this.videoRepository.findAllVideos()).thenReturn(VideoScenarioFactory.LIST_ALL);
 
@@ -42,7 +42,7 @@ public class VideoServiceTest {
 	}
 
 	@Test
-	@DisplayName("Pesquisar pelo id do video")
+	@DisplayName("Pesquisar pelo id do vÃ­deos")
 	public void ListByIdVideo_WhenIdValid_expectedOk() {
 		when(this.videoRepository.findById(any())).thenReturn(Optional.of(VideoScenarioFactory.FIND_BY_ID));
 
@@ -50,7 +50,7 @@ public class VideoServiceTest {
 	}
 
 	@Test
-	@DisplayName("Pesquisar pelo id inválido")
+	@DisplayName("Pesquisar pelo id invÃ¡lido")
 	public void ListByIdVideo_WhenIdIsInValid_expectedException() {
 		when(this.videoRepository.findById(any())).thenReturn(Optional.empty());
 		assertThrows(BusinessException.class, () -> this.videoService.findByVideoId(7L));
@@ -58,7 +58,7 @@ public class VideoServiceTest {
 	}
 
 	@Test
-	@DisplayName("Deletar id válido")
+	@DisplayName("Deletar id vÃ¡lido")
 	public void delete_WhenIdValid_ExpectedDelete() {
 		when(this.videoRepository.findById(any())).thenReturn(Optional.of(VideoScenarioFactory.FIND_BY_ID));
 
@@ -66,7 +66,7 @@ public class VideoServiceTest {
 	}
 
 	@Test
-	@DisplayName("Deletar  id inválido")
+	@DisplayName("Deletar  id invÃ¡lido")
 	public void delete_WhenIdIsInValid_ExpectedDelete() {
 		when(this.videoRepository.findById(any())).thenReturn(Optional.empty());
 
@@ -74,7 +74,7 @@ public class VideoServiceTest {
 	}
 
 	@Test
-	@DisplayName("Criar video com título válido")
+	@DisplayName("Criar video com tÃ­tulo vÃ¡lido")
 	public void create_WhenNotExistsTitle_ExpectedCreate() {
 
 
@@ -91,17 +91,17 @@ public class VideoServiceTest {
 	}
 
 	@Test
-	@DisplayName("Criar video com titulo inválido")
+	@DisplayName("Criar video com titulo invï¿½lido")
 	public void create_WhenExistsTitle_ExpectedNotCreate() {
 
 		when(this.videoRepository.findByTitle(any())).thenReturn(Optional.of(VideoScenarioFactory.FIND_VIDEOS));
 
-		assertThrows(BusinessException.class, () -> videoService.create(VideoScenarioFactory.REQUEST_EXISTS));
+		assertThrows(BusinessException.class, () -> videoService.create(VideoScenarioFactory.CREATE_REQUEST));
 
 	}
 
 	@Test
-	@DisplayName("Atualizar descrição e url com id válido")
+	@DisplayName("Atualizar descriï¿½ï¿½o e url com id vï¿½lido")
 	public void update_WhenExistisId_ExpectedUpdate() {
 
 		when(this.videoRepository.findById(any())).thenReturn(Optional.of(VideoScenarioFactory.VIDEOS));
@@ -112,7 +112,7 @@ public class VideoServiceTest {
 	}
 
 	@Test
-	@DisplayName("Atualizar descrição e url com id inválido")
+	@DisplayName("Atualizar descriï¿½ï¿½o e url com id invï¿½lido")
 	public void update_WhenNotExistisId_ExpectedNotUpdate() {
 
 		when(this.videoRepository.findById(any())).thenReturn(Optional.empty());
