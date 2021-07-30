@@ -17,19 +17,19 @@ import lombok.NoArgsConstructor;
 public class VideoRequest {
 	
 	
-	@NotBlank(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' est� inv�lido")
-	@NotNull(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' est� inv�lido")
-	@NotEmpty(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' est� inv�lido")
+	@NotBlank(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' esta invalido")
+	@NotNull(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' esta invalido")
+	@NotEmpty(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' esta invalido")
 	@ApiModelProperty(position = 2, required = false, value = "titulo do video", name = "title", dataType = "String", example = "Curso de Java- Iniciando")
 	private String title;
-	@NotBlank(groups={OnCreate.class, OnUpdate.class},message = "O campo 'description' est� inv�lido")
-	@NotNull(groups={OnCreate.class, OnUpdate.class},message = "O campo 'description' est� inv�lido")
-	@NotEmpty(groups={OnCreate.class, OnUpdate.class},message = "O campo 'description' est� inv�lido")
+	@NotBlank(groups={OnCreate.class, OnUpdate.class},message = "O campo 'description' esta invalido")
+	@NotNull(groups={OnCreate.class, OnUpdate.class},message = "O campo 'description'esta invalido")
+	@NotEmpty(groups={OnCreate.class, OnUpdate.class},message = "O campo 'description' esta invalido")
 	@ApiModelProperty(position = 3, required = false, value = "descricao do video", name = "descricao", dataType = "String", example = "Curso de Java para iniciantes")
 	private String description;
-	@NotBlank(groups={OnCreate.class, OnUpdate.class},message = "O campo 'url' est� inv�lido")
-	@NotNull(groups={OnCreate.class, OnUpdate.class},message = "O campo 'url' est� inv�lido")
-	@NotEmpty(groups={OnCreate.class, OnUpdate.class},message = "O campo 'url' est� inv�lido")
+	@NotBlank(groups={OnCreate.class, OnUpdate.class},message = "O campo 'url' esta invalido")
+	@NotNull(groups={OnCreate.class, OnUpdate.class},message = "O campo 'url' esta invalido")
+	@NotEmpty(groups={OnCreate.class, OnUpdate.class},message = "O campo 'url' esta invalido")
 	@ApiModelProperty(position = 3, required = false, value = "url do video", name = "url", dataType = "String", example = "http://testewa.com.br")
 	private String url;
 

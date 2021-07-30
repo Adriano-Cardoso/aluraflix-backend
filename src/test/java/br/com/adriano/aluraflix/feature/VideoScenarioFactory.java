@@ -14,7 +14,7 @@ public class VideoScenarioFactory {
 	public static final Video FIND_BY_ID = loadByIdVideo();
 	public static final VideoResponse FIND_VIDEOS = findVideos();
 	public static final VideoUpdateRequest VIDEO_UPDATE = updateRequest();
-	public static final Video VIDEOS = createVideos();
+//	public static final Video VIDEOS = createVideos();
 	public static final VideoRequest CREATE_REQUEST = createNewRequest();
 	public static final VideoResponse VIDEO_RESPONSE = createExistsControllerRequest();
 
@@ -36,11 +36,11 @@ public class VideoScenarioFactory {
 		return videoRequest;
 	}
 
-	private static Video createVideos() {
-		Video video = new Video(5L, "Curso de Scrum", "Curso iniciante", "http://testewa.com.br");
-
-		return video;
-	}
+//	private static Video createVideos() {
+//		Video video = new Video(5L, "Curso de Scrum", "Curso iniciante", "http://testewa.com.br");
+//
+//		return video;
+//	}
 
 	private static VideoUpdateRequest updateRequest() {
 		VideoUpdateRequest videoRequest = new VideoUpdateRequest("Curso de banco de dados", "http://testesbd.com");

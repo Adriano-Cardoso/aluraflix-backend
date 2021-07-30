@@ -100,16 +100,16 @@ public class VideoServiceTest {
 
 	}
 
-	@Test
-	@DisplayName("Atualizar descri��o e url com id v�lido")
-	public void update_WhenExistisId_ExpectedUpdate() {
-
-		when(this.videoRepository.findById(any())).thenReturn(Optional.of(VideoScenarioFactory.VIDEOS));
-
-		VideoResponse videoUpdate = this.videoService.update(1L, VideoScenarioFactory.VIDEO_UPDATE);
-
-		assertNotNull(videoUpdate);
-	}
+//	@Test
+//	@DisplayName("Atualizar descri��o e url com id v�lido")
+//	public void update_WhenExistisId_ExpectedUpdate() {
+//
+//		when(this.videoRepository.findById(any())).thenReturn(Optional.of(VideoScenarioFactory.VIDEOS));
+//
+//		VideoResponse videoUpdate = this.videoService.update(1L, VideoScenarioFactory.VIDEO_UPDATE);
+//
+//		assertNotNull(videoUpdate);
+//	}
 
 	@Test
 	@DisplayName("Atualizar descri��o e url com id inv�lido")
