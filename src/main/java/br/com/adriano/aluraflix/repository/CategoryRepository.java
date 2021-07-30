@@ -14,10 +14,10 @@ import br.com.adriano.aluraflix.domain.dto.response.CategoryResponse;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-	@Query("select new br.com.adriano.aluraflix.domain.dto.response.CategoryResponse(c.caegoryId, c.title, c.color) From Category c")
+	@Query("select new br.com.adriano.aluraflix.domain.dto.response.CategoryResponse(c.categoryId, c.title, c.color) From Category c")
 	List<CategoryResponse> listAllCategory();
     
-	@Query("select new br.com.adriano.aluraflix.domain.dto.response.CategoryResponse(c.caegoryId, c.title, c.color) From Category c where c.title=:title")
+	@Query("select new br.com.adriano.aluraflix.domain.dto.response.CategoryResponse(c.categoryId, c.title, c.color) From Category c where c.title=:title")
 	Optional<CategoryResponse> findByTitle(@Param("title") String title);
 
 }
