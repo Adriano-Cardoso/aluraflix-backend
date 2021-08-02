@@ -3,6 +3,7 @@ package br.com.adriano.aluraflix.service;
 import java.util.List;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -30,10 +31,15 @@ public class CategoryService {
 
 	}
 
-	public CategoryResponse finByCategoryId(Long categoryId) {
+	public Category findByTitle(String title) {
+		log.info("method=findByTitle title={}", title);
+		
+		return this.categoryRepository.findByTitle(title).orElseThrow(() -> Message.CATEGORY_TITLE_EXIST.asBusinessException());
+	}
 
+	public CategoryResponse finByCategoryId(Long categoryId) {
 		Category category = this.categoryRepository.findById(categoryId)
-				.orElseThrow(Message.NOT_FOUND_ID::asBusinessException);
+				.orElseThrow(() -> Message.NOT_FOUND_ID.asBusinessException());
 		log.info("method=findByVideoId videoId={}", categoryId);
 
 		return category.toDto();
@@ -57,7 +63,7 @@ public class CategoryService {
 
 	@Validated(OnUpdate.class)
 	@Transactional
-	public CategoryResponse updateCategory(Long CategoryId, CategoryRequest categoryRequest) {
+	public CategoryResponse updateCategory(Long CategoryId, @Valid CategoryRequest categoryRequest) {
 		Category category = this.categoryRepository.findById(CategoryId)
 				.orElseThrow(Message.NOT_FOUND_ID::asBusinessException);
 

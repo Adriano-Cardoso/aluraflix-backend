@@ -12,12 +12,14 @@ import br.com.adriano.aluraflix.domain.Video;
 import br.com.adriano.aluraflix.domain.dto.response.VideoResponse;
 
 @Repository
-public interface VideoRepository extends JpaRepository<Video, Long>{
-	
-	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url) From Video v")
+public interface VideoRepository extends JpaRepository<Video, Long> {
+
+	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.category.categoryId, v.category.title, v.category.color) From Video v")
 	List<VideoResponse> findAllVideos();
-	
-	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url) From Video v where v.title=:title")
+
+	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.category.categoryId, v.category.title, v.category.color) From Video v where v.title=:title")
 	Optional<VideoResponse> findByTitle(@Param("title") String title);
 
+	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.category.categoryId, v.category.title, v.category.color) FROM Video v where v.category=:category")
+	List<VideoResponse> findByCategory(@Param("category") Long category);
 }

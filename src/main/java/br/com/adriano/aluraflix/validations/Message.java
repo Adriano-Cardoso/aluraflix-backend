@@ -9,7 +9,8 @@ public enum Message {
 	NOT_FOUND_VIDEO("O video nao foi encontrado", HttpStatus.NOT_FOUND),
 	VIDEO_EXIST("O video ja existe", HttpStatus.BAD_REQUEST),
 	CATEGORY_EXIST("A categoria ja existe", HttpStatus.BAD_REQUEST),
-	NOT_FOUND_ID("O id não existe", HttpStatus.NOT_FOUND);
+	NOT_FOUND_ID("O id não existe", HttpStatus.NOT_FOUND),
+	CATEGORY_TITLE_EXIST("O titulo da categoria nao existe", HttpStatus.NOT_FOUND);
 
 	private String value;
 	private String description;

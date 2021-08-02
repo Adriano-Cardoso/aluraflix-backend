@@ -15,6 +15,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class CategoryRequest {
+	
 
 	@NotBlank(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' esta invalido")
 	@NotNull(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' esta invalido")
@@ -27,5 +28,6 @@ public class CategoryRequest {
 	@NotEmpty(groups={OnCreate.class, OnUpdate.class},message = "O campo 'color' esta invalido")
 	@ApiModelProperty(position = 2, required = false, value = "cor da categoria", name = "cpçpr", dataType = "String", example = "Vermelho")
 	private String color;
+	
 
 }

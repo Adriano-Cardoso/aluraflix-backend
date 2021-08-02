@@ -3,18 +3,20 @@ package br.com.adriano.aluraflix.service;
 import java.util.List;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import br.com.adriano.aluraflix.domain.Category;
 import br.com.adriano.aluraflix.domain.Video;
 import br.com.adriano.aluraflix.domain.dto.request.VideoRequest;
 import br.com.adriano.aluraflix.domain.dto.request.VideoUpdateRequest;
 import br.com.adriano.aluraflix.domain.dto.response.VideoResponse;
 import br.com.adriano.aluraflix.repository.VideoRepository;
+import br.com.adriano.aluraflix.validations.Message;
 import br.com.adriano.aluraflix.validations.OnCreate;
 import br.com.adriano.aluraflix.validations.OnUpdate;
-import br.com.adriano.aluraflix.validations.Message;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,13 +28,20 @@ public class VideoService {
 
 	private VideoRepository videoRepository;
 
+	private CategoryService categoryService;
+
 	@Validated(OnCreate.class)
-	public VideoResponse create(VideoRequest videoRequest) {
+	public VideoResponse create(@Valid VideoRequest videoRequest) {
+
+		Category category = this.categoryService.findByTitle(videoRequest.getCategoryId().getTitle());
+
 		this.videoRepository.findByTitle(videoRequest.getTitle()).ifPresent(t -> {
 			throw Message.VIDEO_EXIST.asBusinessException();
 		});
 
 		Video video = Video.of(videoRequest);
+
+		video.addCategory(category);
 
 		this.videoRepository.save(video);
 

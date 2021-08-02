@@ -1,7 +1,9 @@
 package br.com.adriano.aluraflix.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,24 +44,28 @@ public class Video {
 	@Column(name = "categoria_id", nullable = true, insertable = false, updatable = false)
 	private Long categoryId;
 
-	@OneToOne(optional = false)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, optional = false)
 	@JoinColumn(name = "categoria_id", referencedColumnName = "categoria_id")
 	private Category category;
 
 	public VideoResponse toDto() {
 		return VideoResponse.builder().videoId(this.videoId).title(this.title).description(this.description)
-				.url(this.url).build();
+				.url(this.url).categoryId(this.category.getCategoryId()).titleCategory(this.category.getTitle())
+				.color(this.category.getColor()).build();
 	}
 
 	public static Video of(VideoRequest videoRequest) {
+		Category categoria = Category.builder().title(videoRequest.getCategoryId().getTitle())
+				.color(videoRequest.getCategoryId().getColor()).build();
 		return Video.builder().title(videoRequest.getTitle()).description(videoRequest.getDescription())
-				.url(videoRequest.getUrl()).build();
+				.url(videoRequest.getUrl()).category(categoria).build();
 
 	}
 
 	public void addCategory(Category category) {
 		this.category = category;
 		this.categoryId = category.getCategoryId();
+
 	}
 
 	public void update(VideoUpdateRequest videoUpdateRequestRequest) {
