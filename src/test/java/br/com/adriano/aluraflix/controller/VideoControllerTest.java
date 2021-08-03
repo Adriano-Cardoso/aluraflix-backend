@@ -1,4 +1,4 @@
-package br.com.adriano.aluraflix;
+package br.com.adriano.aluraflix.controller;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;

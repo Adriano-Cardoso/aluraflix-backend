@@ -36,18 +36,18 @@ public class VideoServiceTest {
 
 	@Test
 	@DisplayName("Listar todos os videos")
-	public void listAllVideos_WhenListValid_ExpectedOk() {
+	void listAllVideos_WhenListValid_ExpectedOk() {
 		when(this.videoRepository.findAllVideos()).thenReturn(VideoScenarioFactory.LIST_ALL);
 
 		List<VideoResponse> listAllVideos = this.videoService.listAllVideos();
 
 		assertNotNull(listAllVideos);
-
+ 
 	}
 
 	@Test
 	@DisplayName("Pesquisar pelo id valido")
-	public void ListByIdVideo_WhenIdValid_expectedOk() {
+	void ListByIdVideo_WhenIdValid_expectedOk() {
 		when(this.videoRepository.findById(any())).thenReturn(Optional.of(VideoScenarioFactory.VIDEO));
 
 		assertNotNull(this.videoService.findByVideoId(1L));
@@ -57,7 +57,7 @@ public class VideoServiceTest {
 
 	@Test
 	@DisplayName("Pesquisar pelo id invalido")
-	public void ListByIdVideo_WhenIdIsInValid_expectedException() {
+	void ListByIdVideo_WhenIdIsInValid_expectedException() {
 		when(this.videoRepository.findById(any())).thenReturn(Optional.empty());
 		assertThrows(BusinessException.class, () -> this.videoService.findByVideoId(7L));
 
@@ -65,15 +65,15 @@ public class VideoServiceTest {
 
 	@Test
 	@DisplayName("Deletar id valido")
-	public void delete_WhenIdValid_ExpectedDelete() {
+	void delete_WhenIdValid_ExpectedDelete() {
 		when(this.videoRepository.findById(any())).thenReturn(Optional.of(VideoScenarioFactory.FIND_BY_ID));
 
 		this.videoService.delete(3L);
 	}
 
 	@Test
-	@DisplayName("Deletar  id inválido")
-	public void delete_WhenIdIsInValid_ExpectedDelete() {
+	@DisplayName("Deletar  id invalido")
+	void delete_WhenIdIsInValid_ExpectedDelete() {
 		when(this.videoRepository.findById(any())).thenReturn(Optional.empty());
 
 		assertThrows(BusinessException.class, () -> this.videoService.delete(7L));
@@ -81,7 +81,7 @@ public class VideoServiceTest {
 
 	@Test
 	@DisplayName("Criar video com parametros validos")
-	public void create_WhenNotExistsTitle_ExpectedCreate() {
+	void create_WhenNotExistsTitle_ExpectedCreate() {
 
 		when(this.videoRepository.save(any())).thenReturn(VideoScenarioFactory.VIDEO);
 
@@ -101,7 +101,7 @@ public class VideoServiceTest {
 
 	@Test
 	@DisplayName("Criar video com titulo com parametros invalidos")
-	public void create_WhenExistsTitle_ExpectedNotCreate() {
+	void create_WhenExistsTitle_ExpectedNotCreate() {
 
 		when(this.videoRepository.findByTitle(any())).thenReturn(Optional.of(VideoScenarioFactory.FIND_VIDEOS));
 
@@ -111,7 +111,7 @@ public class VideoServiceTest {
 
 	@Test
 	@DisplayName("Atualizar parametros  com id valido")
-	public void update_WhenExistisId_ExpectedUpdate() {
+	void update_WhenExistisId_ExpectedUpdate() {
 
 		when(this.videoRepository.findById(any())).thenReturn(Optional.of(VideoScenarioFactory.VIDEO));
 
@@ -122,7 +122,7 @@ public class VideoServiceTest {
 
 	@Test
 	@DisplayName("Atualizar parametros e url com id invalido")
-	public void update_WhenNotExistisId_ExpectedNotUpdate() {
+	void update_WhenNotExistisId_ExpectedNotUpdate() {
 
 		when(this.videoRepository.findById(any())).thenReturn(Optional.empty());
 

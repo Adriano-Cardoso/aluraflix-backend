@@ -30,7 +30,7 @@ public class CategoryService {
 		return this.categoryRepository.listAllCategory();
 
 	}
-
+ 
 	public Category findByTitle(String title) {
 		log.info("method=findByTitle title={}", title);
 		
@@ -73,13 +73,12 @@ public class CategoryService {
 
 	}
 
-	public CategoryResponse delete(Long categoryId) {
+	public void delete(Long categoryId) {
 		Category category = this.categoryRepository.findById(categoryId)
 				.orElseThrow(Message.NOT_FOUND_ID::asBusinessException);
 
 		this.categoryRepository.delete(category);
 		log.info("method=delete videoId={}", category.getCategoryId());
 
-		return this.delete(categoryId);
 	}
 }
