@@ -18,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.com.adriano.aluraflix.domain.dto.response.VideoResponse;
 import br.com.adriano.aluraflix.exception.BusinessException;
+import br.com.adriano.aluraflix.feature.CategoryScenarioFactory;
 import br.com.adriano.aluraflix.feature.VideoScenarioFactory;
 import br.com.adriano.aluraflix.repository.VideoRepository;
 
@@ -30,59 +31,67 @@ public class VideoServiceTest {
 	@Mock
 	private VideoRepository videoRepository;
 
+	@Mock
+	private CategoryService categoryService;
+
 	@Test
-	@DisplayName("Listar todos os vídeos")
-	public void listAllVideos_WhenListValid_ExpectedOk() {
+	@DisplayName("Listar todos os videos")
+	void listAllVideos_WhenListValid_ExpectedOk() {
 		when(this.videoRepository.findAllVideos()).thenReturn(VideoScenarioFactory.LIST_ALL);
 
 		List<VideoResponse> listAllVideos = this.videoService.listAllVideos();
 
 		assertNotNull(listAllVideos);
-
+ 
 	}
 
 	@Test
-	@DisplayName("Pesquisar pelo id do vídeos")
-	public void ListByIdVideo_WhenIdValid_expectedOk() {
-		when(this.videoRepository.findById(any())).thenReturn(Optional.of(VideoScenarioFactory.FIND_BY_ID));
+	@DisplayName("Pesquisar pelo id valido")
+	void ListByIdVideo_WhenIdValid_expectedOk() {
+		when(this.videoRepository.findById(any())).thenReturn(Optional.of(VideoScenarioFactory.VIDEO));
 
 		assertNotNull(this.videoService.findByVideoId(1L));
+
+		verify(videoRepository).findById(any());
 	}
 
 	@Test
-	@DisplayName("Pesquisar pelo id inválido")
-	public void ListByIdVideo_WhenIdIsInValid_expectedException() {
+	@DisplayName("Pesquisar pelo id invalido")
+	void ListByIdVideo_WhenIdIsInValid_expectedException() {
 		when(this.videoRepository.findById(any())).thenReturn(Optional.empty());
 		assertThrows(BusinessException.class, () -> this.videoService.findByVideoId(7L));
 
 	}
 
 	@Test
-	@DisplayName("Deletar id válido")
-	public void delete_WhenIdValid_ExpectedDelete() {
+	@DisplayName("Deletar id valido")
+	void delete_WhenIdValid_ExpectedDelete() {
 		when(this.videoRepository.findById(any())).thenReturn(Optional.of(VideoScenarioFactory.FIND_BY_ID));
 
 		this.videoService.delete(3L);
 	}
 
 	@Test
-	@DisplayName("Deletar  id inválido")
-	public void delete_WhenIdIsInValid_ExpectedDelete() {
+	@DisplayName("Deletar  id invalido")
+	void delete_WhenIdIsInValid_ExpectedDelete() {
 		when(this.videoRepository.findById(any())).thenReturn(Optional.empty());
 
 		assertThrows(BusinessException.class, () -> this.videoService.delete(7L));
 	}
 
 	@Test
-	@DisplayName("Criar video com título válido")
-	public void create_WhenNotExistsTitle_ExpectedCreate() {
+	@DisplayName("Criar video com parametros validos")
+	void create_WhenNotExistsTitle_ExpectedCreate() {
 
+		when(this.videoRepository.save(any())).thenReturn(VideoScenarioFactory.VIDEO);
 
-		when(this.videoRepository.findByTitle("Curso de kambam")).thenReturn(Optional.empty());
+		when(this.videoRepository.findByTitle(any())).thenReturn(Optional.empty());
 
-		VideoResponse videoSave = this.videoService.create(VideoScenarioFactory.CREATE_REQUEST);
+		when(this.categoryService.findByTitle(any())).thenReturn(CategoryScenarioFactory.CATEGORY);
 
-		assertNotNull(videoSave);
+		VideoResponse save = videoService.create(VideoScenarioFactory.CREATE_REQUEST);
+
+		assertNotNull(save);
 
 		verify(videoRepository).findByTitle(any());
 
@@ -91,8 +100,8 @@ public class VideoServiceTest {
 	}
 
 	@Test
-	@DisplayName("Criar video com titulo inv�lido")
-	public void create_WhenExistsTitle_ExpectedNotCreate() {
+	@DisplayName("Criar video com titulo com parametros invalidos")
+	void create_WhenExistsTitle_ExpectedNotCreate() {
 
 		when(this.videoRepository.findByTitle(any())).thenReturn(Optional.of(VideoScenarioFactory.FIND_VIDEOS));
 
@@ -101,10 +110,10 @@ public class VideoServiceTest {
 	}
 
 	@Test
-	@DisplayName("Atualizar descri��o e url com id v�lido")
-	public void update_WhenExistisId_ExpectedUpdate() {
+	@DisplayName("Atualizar parametros  com id valido")
+	void update_WhenExistisId_ExpectedUpdate() {
 
-		when(this.videoRepository.findById(any())).thenReturn(Optional.of(VideoScenarioFactory.VIDEOS));
+		when(this.videoRepository.findById(any())).thenReturn(Optional.of(VideoScenarioFactory.VIDEO));
 
 		VideoResponse videoUpdate = this.videoService.update(1L, VideoScenarioFactory.VIDEO_UPDATE);
 
@@ -112,8 +121,8 @@ public class VideoServiceTest {
 	}
 
 	@Test
-	@DisplayName("Atualizar descri��o e url com id inv�lido")
-	public void update_WhenNotExistisId_ExpectedNotUpdate() {
+	@DisplayName("Atualizar parametros e url com id invalido")
+	void update_WhenNotExistisId_ExpectedNotUpdate() {
 
 		when(this.videoRepository.findById(any())).thenReturn(Optional.empty());
 
