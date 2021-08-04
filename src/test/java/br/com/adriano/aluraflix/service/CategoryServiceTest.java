@@ -112,8 +112,8 @@ public class CategoryServiceTest {
 	@Test
 	@DisplayName("atualizar categoria com id invalido")
 	void update_WhenUpdateIdInValid_ExpectedException() {
-		when(this.categoryRepository.findByTitle(any())).thenReturn(Optional.empty());
-		assertThrows(BusinessException.class, () -> categoryService.updateCategory(10L,CategoryScenarioFactory.CATEGORY_UPDATE_REQUEST));
+		when(this.categoryRepository.findById(any())).thenReturn(Optional.empty());
+		assertThrows(BusinessException.class, () -> categoryService.updateCategory(15L,CategoryScenarioFactory.CATEGORY_UPDATE_REQUEST));
 	}
 	
 

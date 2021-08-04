@@ -16,13 +16,13 @@ public class CategoryScenarioFactory {
 	public static final Category CATEGORY_ID_VALID = loadCategoryByIdValid();
 	public static final CategoryRequest CREATE_CATEGORY = CreateCategoryRequest();
 	public static final CategoryRequest CATEGORY_UPDATE_REQUEST = updateCategoryRequest();
+	public static final CategoryResponse CATEGORY_RESPONSE_CONTROLLER = loadCategoryResponseController();
+	public static final CategoryRequest CREATE = createRequestController();
 
 	private static Category loadCategory() {
 		Category category = new Category(1L, "title", "color");
 		return category;
 	}
-
-
 
 
 	private static CategoryResponse loadCategoryResponse() {
@@ -47,12 +47,23 @@ public class CategoryScenarioFactory {
 
 		return category;
 	}
+
 	private static CategoryRequest CreateCategoryRequest() {
 		CategoryRequest categoryRequest = new CategoryRequest("title", "color");
 		return categoryRequest;
 	}
+
 	private static CategoryRequest updateCategoryRequest() {
 		CategoryRequest categoryRequest = new CategoryRequest("title", "color");
+		return categoryRequest;
+	}
+
+	private static CategoryResponse loadCategoryResponseController() {
+		CategoryResponse categoryResponse = new CategoryResponse(3L, "titulo", "cor");
+		return categoryResponse;
+	}
+	private static CategoryRequest createRequestController() {
+		CategoryRequest categoryRequest = new CategoryRequest("titulo", "cor");
 		return categoryRequest;
 	}
 }
