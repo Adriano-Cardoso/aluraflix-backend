@@ -1,12 +1,12 @@
 package br.com.adriano.aluraflix.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
@@ -15,6 +15,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import br.com.adriano.aluraflix.domain.dto.response.VideoResponse;
 import br.com.adriano.aluraflix.exception.BusinessException;
@@ -37,12 +39,16 @@ public class VideoServiceTest {
 	@Test
 	@DisplayName("Listar todos os videos")
 	void listAllVideos_WhenListValid_ExpectedOk() {
-		when(this.videoRepository.findAllVideos()).thenReturn(VideoScenarioFactory.LIST_ALL);
+		when(this.videoRepository.findAllVideos(any(Pageable.class), any())).thenReturn(VideoScenarioFactory.LIST_ALL);
 
-		List<VideoResponse> listAllVideos = this.videoService.listAllVideos();
+		Page<VideoResponse> listAllVideos = this.videoService.listAllVideos(0, 10, null);
 
 		assertNotNull(listAllVideos);
- 
+
+		assertEquals(VideoScenarioFactory.LIST_ALL, listAllVideos);
+
+		verify(videoRepository).findAllVideos(any(), any());
+
 	}
 
 	@Test
@@ -127,6 +133,32 @@ public class VideoServiceTest {
 		when(this.videoRepository.findById(any())).thenReturn(Optional.empty());
 
 		assertThrows(BusinessException.class, () -> videoService.update(10L, VideoScenarioFactory.VIDEO_UPDATE));
+	}
+
+	@Test
+	@DisplayName("Listar todos os videos livres")
+	void free_ExpectedSucess() {
+		when(this.videoRepository.findAllVideoFree(any(Pageable.class))).thenReturn(VideoScenarioFactory.LIST_ALL);
+		Page<VideoResponse> listAllVideo = this.videoService.free();
+
+		assertNotNull(listAllVideo);
+
+		assertEquals(VideoScenarioFactory.LIST_ALL, listAllVideo);
+
+		verify(videoRepository).findAllVideoFree(any());
+
+	}
+
+	@Test
+	@DisplayName("Listar por cateogrias")
+	void listByCategory_WhenListByCategoryIsValid_ExpectedSucess() {
+		when(this.videoRepository.findByCategory(any(), any(Pageable.class))).thenReturn(VideoScenarioFactory.LIST_ALL);
+		Page<VideoResponse> listAllVideo = this.videoService.listByCategory(0, 10, 1L);
+
+		assertNotNull(listAllVideo);
+
+		verify(videoRepository).findByCategory(any(), any());
+
 	}
 
 }

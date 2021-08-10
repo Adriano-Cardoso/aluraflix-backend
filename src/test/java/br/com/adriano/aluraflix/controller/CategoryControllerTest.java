@@ -56,8 +56,8 @@ public class CategoryControllerTest {
 	@DisplayName("Criar categoria com titulo valido")
 	void CreateCategory_WhenCreateVideoTitleNotExists_ExpectedCreate() throws Exception {
 		when(this.categoryService.createCategory(any())).thenReturn(CategoryScenarioFactory.CATEGORY_RESPONSE);
-		this.mockMvc.perform(post("/categorias").content(asJsonString(CategoryScenarioFactory.CREATE_CATEGORY))
-				.contentType(MediaType.APPLICATION_JSON)).andExpect(status().isCreated());
+		mockMvc.perform(post("/categorias").content(asJsonString(CategoryScenarioFactory.CREATE))
+                .contentType(MediaType.APPLICATION_JSON)).andExpect(status().isCreated());
 	}
 
 	@Test

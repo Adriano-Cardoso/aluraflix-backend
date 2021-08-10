@@ -1,6 +1,7 @@
 package br.com.adriano.aluraflix.controller;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
@@ -38,15 +39,31 @@ public class VideoControllerTest {
 	private MockMvc mockMvc;
 
 	@Test
-	@DisplayName("Listar todos os vídeos")
+	@DisplayName("Listar todos os videos")
 	public void listaAllVideos_WhenListIsValid_ExpectedOk() throws Exception {
-		when(this.videoService.listAllVideos()).thenReturn(VideoScenarioFactory.LIST_ALL);
+		when(this.videoService.listAllVideos(anyInt(), anyInt(), any())).thenReturn(VideoScenarioFactory.FIND_ALL);
 		this.mockMvc.perform(get("/videos")).andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON));
 	}
 
 	@Test
-	@DisplayName("Lista vídeos pelo Id")
+	@DisplayName("Listar todos os free")
+	public void free_WhenListIsValid_ExpectedOk() throws Exception {
+		when(this.videoService.free()).thenReturn(VideoScenarioFactory.FIND_ALL);
+		this.mockMvc.perform(get("/videos/free")).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+	}
+
+	@Test
+	@DisplayName("Listar todos por categoria")
+	public void cateogry_WhenListIsValid_ExpectedOk() throws Exception {
+		when(this.videoService.listByCategory(anyInt(), anyInt(), anyLong())).thenReturn(VideoScenarioFactory.FIND_ALL);
+		this.mockMvc.perform(get("/videos/4/categorias")).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+	}
+
+	@Test
+	@DisplayName("Lista videos pelo Id")
 	public void findVideoId_WhenIdIsValid_ExpectedOk() throws Exception {
 		when(this.videoService.findByVideoId(4L)).thenReturn(VideoScenarioFactory.FIND_VIDEOS);
 		this.mockMvc.perform(get("/videos/4")).andExpect(status().isOk())
@@ -54,7 +71,7 @@ public class VideoControllerTest {
 	}
 
 	@Test
-	@DisplayName("Criar novo vídeos com nome válido")
+	@DisplayName("Criar novo video com nome valido")
 	public void createVideo_WhenCreateVideoTitleNotExists_ExpectedCreate() throws Exception {
 
 		when(this.videoService.create(any())).thenReturn(VideoScenarioFactory.VIDEO_RESPONSE);
@@ -63,7 +80,7 @@ public class VideoControllerTest {
 	}
 
 	@Test
-	@DisplayName("Atualiza vídeos com Id v�válido")
+	@DisplayName("Atualiza videos com id invalido")
 	public void updateVideo_WhenUpdateVideoIdExists_ExpectedUpdate() throws Exception {
 
 		when(this.videoService.update(anyLong(), any())).thenReturn(VideoScenarioFactory.VIDEO_RESPONSE);
@@ -73,7 +90,7 @@ public class VideoControllerTest {
 	}
 
 	@Test
-	@DisplayName("deletar vídeos com Id válido")
+	@DisplayName("deletar videos com id valido")
 	public void delete_WhenPathVariableIsValid_ExpectedOk() throws Exception {
 
 		doNothing().when(videoService).delete(4L);
@@ -82,7 +99,7 @@ public class VideoControllerTest {
 	}
 
 	@Test
-	@DisplayName("deletar vídeos com Id válido")
+	@DisplayName("deletar videos com Id valido")
 	public static String asJsonString(final Object obj) {
 		try {
 			return new ObjectMapper().writeValueAsString(obj);

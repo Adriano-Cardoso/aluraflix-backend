@@ -1,9 +1,8 @@
 package br.com.adriano.aluraflix.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.adriano.aluraflix.domain.dto.request.VideoRequest;
@@ -31,37 +31,54 @@ public class VideoController {
 
 	private VideoService videoService;
 
-	@ApiOperation(value = "find all vídeos")
+	@ApiOperation(value = "Buscar todos os videos")
 	@GetMapping
-	public ResponseEntity<List<VideoResponse>> listAllVideos() {
-		return ResponseEntity.status(HttpStatus.OK).body(this.videoService.listAllVideos());
+	public ResponseEntity<Page<VideoResponse>> listAllVideos(
+			@RequestParam(required = false, defaultValue = "0", name = "page") int page,
+			@RequestParam(required = false, defaultValue = "10", name = "limit") int limit,
+			@RequestParam(required = false, name = "search") String title) {
+		return ResponseEntity.status(HttpStatus.OK).body(this.videoService.listAllVideos(page, limit, title));
 	}
 
-	@ApiOperation(value = "find by id vídeos")
+	@ApiOperation(value = "Buscar video por id")
 	@GetMapping("/{videoId}")
 	public ResponseEntity<VideoResponse> findByVideoId(@PathVariable("videoId") Long videoId) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.videoService.findByVideoId(videoId));
 
 	}
 
-	@ApiOperation(value = "create new vídeos")
+	@ApiOperation(value = "criar um novo video")
 	@PostMapping
 	public ResponseEntity<VideoResponse> create(@Valid @RequestBody VideoRequest videoRequest) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(this.videoService.create(videoRequest));
 	}
 
-	@ApiOperation(value = "update vídeos")
+	@ApiOperation(value = "atualizar videos")
 	@PatchMapping("/{videoId}")
 	public ResponseEntity<VideoResponse> update(@RequestBody @Valid VideoUpdateRequest videoUpdateRequest,
 			@PathVariable("videoId") Long videoId) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.videoService.update(videoId, videoUpdateRequest));
 	}
-    
-	@ApiOperation(value = "delete vídeos")
+
+	@ApiOperation(value = "deletar videos")
 	@DeleteMapping("/{videoId}")
 	public ResponseEntity<VideoResponse> delete(@Valid @PathVariable("videoId") Long videoId) {
 		this.videoService.delete(videoId);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	}
+
+	@GetMapping("/{categoryId}/categorias")
+	public ResponseEntity<Page<VideoResponse>> findByCategory(
+			@RequestParam(required = false, defaultValue = "0", name = "page") int page,
+			@RequestParam(required = false, defaultValue = "10", name = "limit") int limit,
+			@PathVariable("categoryId") Long category) {
+		return ResponseEntity.status(HttpStatus.OK).body(videoService.listByCategory(page, limit, category));
+
+	}
+
+	@GetMapping("/free")
+	public ResponseEntity<Page<VideoResponse>> free() {
+		return ResponseEntity.status(HttpStatus.OK).body(videoService.free());
 	}
 
 }

@@ -63,7 +63,7 @@ public class CategoryScenarioFactory {
 		return categoryResponse;
 	}
 	private static CategoryRequest createRequestController() {
-		CategoryRequest categoryRequest = new CategoryRequest("titulo", "cor");
+		CategoryRequest categoryRequest = new CategoryRequest("title", "color");
 		return categoryRequest;
 	}
 }
