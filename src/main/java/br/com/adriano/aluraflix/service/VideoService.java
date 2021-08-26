@@ -1,10 +1,11 @@
 package br.com.adriano.aluraflix.service;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -63,10 +64,28 @@ public class VideoService {
 
 	}
 
-	public List<VideoResponse> listAllVideos() {
+	public Page<VideoResponse> listAllVideos(int page, int limit, String title) {
 		log.info("method=listAllVideos");
 
-		return this.videoRepository.findAllVideos();
+		Pageable pageable = PageRequest.of(page, limit);
+
+		log.info("method=findAllVideo page={} limit={} search={}", page, limit);
+
+		return videoRepository.findAllVideos(pageable, title);
+
+	}
+
+	public Page<VideoResponse> free() {
+		int limit = 3;
+		int page = 0;
+
+		log.info("method=listAllVideos");
+
+		Pageable pageable = PageRequest.of(page, limit);
+
+		log.info("method=listAllVideos limit{}", limit);
+
+		return this.videoRepository.findAllVideoFree(pageable);
 	}
 
 	public VideoResponse findByVideoId(Long videoId) {
@@ -84,6 +103,15 @@ public class VideoService {
 		log.info("method=delete videoId={}", videoId);
 
 		this.videoRepository.delete(video);
+
+	}
+
+	public Page<VideoResponse> listByCategory(int page, int limit, Long category) {
+		Pageable pageable = PageRequest.of(page, limit);
+
+		log.info("method=findByCategory page={} limit={} categoryId={}", page, limit, category);
+
+		return videoRepository.findByCategory(category, pageable);
 
 	}
 
