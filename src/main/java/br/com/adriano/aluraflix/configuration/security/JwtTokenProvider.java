@@ -23,8 +23,10 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class JwtTokenProvider {
 
 	@Value("${api.jwt.secret}")
