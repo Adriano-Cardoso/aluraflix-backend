@@ -1,5 +1,6 @@
 package br.com.adriano.aluraflix.configuration.security;
 
+import java.io.Serializable;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +28,9 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class JwtTokenProvider {
+public class JwtTokenProvider implements Serializable {
+
+	private static final long serialVersionUID = -4857633891022784794L;
 
 	@Value("${api.jwt.secret}")
 	private String secretKey;
