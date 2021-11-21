@@ -9,6 +9,7 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Getter
 @Setter
 public class VideoResponse {
@@ -22,16 +23,8 @@ public class VideoResponse {
 	@ApiModelProperty(position = 4, required = false, value = "url do video", name = "url", dataType = "String", example = "http://testewa.com.br")
 	private String url;
 	@ApiModelProperty(position = 5, required = false, value = "id da categoria produto", name = "categoryId", dataType = "Long", example = "1")
-	private CategoryResponse categoryId;
+	private Long categoryId;
 
-	@Builder
-	public VideoResponse(Long videoId, String title, String description, String url, Long categoryId, String titleCategory, String color) {
-		this.videoId = videoId;
-		this.title = title;
-		this.description = description;
-		this.url = url;
-		this.categoryId = new CategoryResponse(categoryId, titleCategory, color);
-	}
 	
 }
 

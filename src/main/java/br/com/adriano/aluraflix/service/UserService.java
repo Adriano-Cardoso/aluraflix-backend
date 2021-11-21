@@ -16,6 +16,7 @@ import br.com.adriano.aluraflix.domain.Profile;
 import br.com.adriano.aluraflix.domain.User;
 import br.com.adriano.aluraflix.domain.dto.request.UserRequest;
 import br.com.adriano.aluraflix.domain.dto.response.UsuarioResponse;
+import br.com.adriano.aluraflix.repository.ProfileRepository;
 import br.com.adriano.aluraflix.repository.UserRepository;
 import br.com.adriano.aluraflix.validations.Message;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserService implements UserDetailsService {
 	
 	UserRepository userRepository;
+	
     ProfileRepository profileRepository;
 
     @Override

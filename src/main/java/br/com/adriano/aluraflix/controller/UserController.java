@@ -12,7 +12,7 @@ import br.com.adriano.aluraflix.domain.dto.response.UsuarioResponse;
 import br.com.adriano.aluraflix.service.UserService;
 import lombok.AllArgsConstructor;
 
-@RequestMapping("/usuarios")
+@RequestMapping("/users")
 @RestController
 @AllArgsConstructor
 public class UserController {

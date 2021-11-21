@@ -24,13 +24,11 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class JwtTokenProvider implements Serializable {
 
-	private static final long serialVersionUID = -4857633891022784794L;
+	private static final long serialVersionUID = 1817886571586561084L;
 
 	@Value("${api.jwt.secret}")
 	private String secretKey;

@@ -34,7 +34,7 @@ public class VideoService {
 	@Validated(OnCreate.class)
 	public VideoResponse create(@Valid VideoRequest videoRequest) {
 
-		Category category = this.categoryService.findByTitle(videoRequest.getCategoryId().getTitle());
+		Category category = this.categoryService.findById(videoRequest.getCategoryId());
 
 		this.videoRepository.findByTitle(videoRequest.getTitle()).ifPresent(t -> {
 			throw Message.VIDEO_EXIST.asBusinessException();

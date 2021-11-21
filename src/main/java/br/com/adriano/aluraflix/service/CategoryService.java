@@ -30,11 +30,12 @@ public class CategoryService {
 		return this.categoryRepository.listAllCategory();
 
 	}
- 
+
 	public Category findByTitle(String title) {
 		log.info("method=findByTitle title={}", title);
-		
-		return this.categoryRepository.findByTitle(title).orElseThrow(() -> Message.CATEGORY_TITLE_EXIST.asBusinessException());
+
+		return this.categoryRepository.findByTitle(title)
+				.orElseThrow(() -> Message.CATEGORY_TITLE_EXIST.asBusinessException());
 	}
 
 	public CategoryResponse finByCategoryId(Long categoryId) {
@@ -80,5 +81,20 @@ public class CategoryService {
 		this.categoryRepository.delete(category);
 		log.info("method=delete videoId={}", category.getCategoryId());
 
+	}
+
+//	public Categoria findById(Long categoryId) {
+//
+//		log.info("method=listAllCategorias");
+//
+//		return categoriaRepository.findById(categoryId)
+//				.orElseThrow(() -> Message.NOT_FOUND_CATEGORY.asBusinessException());
+//	}
+
+	public Category findById(Long categoryId) {
+		
+		log.info("method=findById");
+		return categoryRepository.findById(categoryId)
+				.orElseThrow(() -> Message.NOT_FOUND_CATEGORY.asBusinessException());
 	}
 }
