@@ -1,5 +1,6 @@
 package br.com.adriano.aluraflix.configuration.security;
 
+import java.io.Serializable;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Service;
 
 import br.com.adriano.aluraflix.exception.BusinessException;
 import br.com.adriano.aluraflix.validations.Message;
@@ -23,7 +25,10 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-public class JwtTokenProvider {
+@Service
+public class JwtTokenProvider implements Serializable {
+
+	private static final long serialVersionUID = 1817886571586561084L;
 
 	@Value("${api.jwt.secret}")
 	private String secretKey;

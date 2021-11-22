@@ -32,6 +32,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
@@ -76,6 +80,7 @@
 			<version>3.12.0</version>
 		</dependency>
 	</dependencies>
+
 
 	<build>
 		<plugins>
@@ -208,6 +213,7 @@
 						<exclude>br/com/adriano/aluraflix/repository/*/**</exclude>
 						<exclude>br/com/adriano/aluraflix/validations/*/**</exclude>
 						<exclude>br/com/adriano/aluraflix/AluraflixApplication.*</exclude>
+						<exclude>br/com/adriano/aluraflix/service/LoginService.*</exclude>
 					</excludes>
 				</configuration>
 			</plugin>

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -89,11 +90,11 @@ public class VideoServiceTest {
 	@DisplayName("Criar video com parametros validos")
 	void create_WhenNotExistsTitle_ExpectedCreate() {
 
-		when(this.videoRepository.save(any())).thenReturn(VideoScenarioFactory.VIDEO);
+		when(videoRepository.save(any())).thenReturn(VideoScenarioFactory.VIDEO);
 
-		when(this.videoRepository.findByTitle(any())).thenReturn(Optional.empty());
+		when(videoRepository.findByTitle(any())).thenReturn(Optional.empty());
 
-		when(this.categoryService.findByTitle(any())).thenReturn(CategoryScenarioFactory.CATEGORY);
+		when(categoryService.findById(anyLong())).thenReturn(CategoryScenarioFactory.CATEGORY);
 
 		VideoResponse save = videoService.create(VideoScenarioFactory.CREATE_REQUEST);
 

@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/auth")
 @AllArgsConstructor
 @RestController
-public class authenticationController {
+public class LoginController {
 
 	
 	private LoginService loginService;

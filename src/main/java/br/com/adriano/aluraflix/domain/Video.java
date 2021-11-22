@@ -50,17 +50,15 @@ public class Video {
 
 	public VideoResponse toDto() {
 		return VideoResponse.builder().videoId(this.videoId).title(this.title).description(this.description)
-				.url(this.url).categoryId(this.category.getCategoryId()).titleCategory(this.category.getTitle())
-				.color(this.category.getColor()).build();
+				.url(this.url).categoryId(this.category.getCategoryId()).build();
 	}
 
 	public static Video of(VideoRequest videoRequest) {
-		Category categoria = Category.builder().title(videoRequest.getCategoryId().getTitle())
-				.color(videoRequest.getCategoryId().getColor()).build();
 		return Video.builder().title(videoRequest.getTitle()).description(videoRequest.getDescription())
-				.url(videoRequest.getUrl()).category(categoria).build();
+				.url(videoRequest.getUrl()).build();
 
 	}
+	
 
 	public void addCategory(Category category) {
 		this.category = category;

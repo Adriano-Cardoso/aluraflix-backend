@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import br.com.adriano.aluraflix.domain.dto.response.UsuarioResponse;
+import br.com.adriano.aluraflix.domain.dto.response.UserResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -46,6 +46,7 @@ public class User implements UserDetails {
 
 	@Column(name = "password_user", nullable = false)
 	private String password;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Profile> perfis;
 
@@ -84,8 +85,8 @@ public class User implements UserDetails {
 		return true;
 	}
 
-	public UsuarioResponse toDto() {
-	      return UsuarioResponse.builder()
+	public UserResponse toDto() {
+	      return UserResponse.builder()
 	                .email(this.email)
 	                .username(this.name)
 	                .build();
