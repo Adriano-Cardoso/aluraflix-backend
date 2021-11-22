@@ -1,8 +1,8 @@
 
-CREATE TABLE tb_user_profile(
+/*CREATE TABLE tb_user_profile(
      user_id bigint NOT NULL,
      profile_id bigint NOT NULL
-);
+); */
 
 
 ALTER TABLE TB_VIDEO add FOREIGN KEY(categoria_id) REFERENCES TB_CATEGORIA(categoria_id);
@@ -19,6 +19,6 @@ insert into tb_profile values(1,'ADMIN');
 
 insert into tb_profile values(2,'USER');
 
-insert into tb_user_profile values(1,1);
+insert into TB_USER_PERFIS  values(1,1);
 
 

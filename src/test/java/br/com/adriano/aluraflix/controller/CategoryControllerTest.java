@@ -18,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,6 +29,7 @@ import br.com.adriano.aluraflix.service.CategoryService;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 public class CategoryControllerTest {
 
 	@MockBean
@@ -57,7 +59,7 @@ public class CategoryControllerTest {
 	void CreateCategory_WhenCreateVideoTitleNotExists_ExpectedCreate() throws Exception {
 		when(this.categoryService.createCategory(any())).thenReturn(CategoryScenarioFactory.CATEGORY_RESPONSE);
 		mockMvc.perform(post("/categorias").content(asJsonString(CategoryScenarioFactory.CREATE))
-                .contentType(MediaType.APPLICATION_JSON)).andExpect(status().isCreated());
+				.contentType(MediaType.APPLICATION_JSON)).andExpect(status().isCreated());
 	}
 
 	@Test
@@ -70,12 +72,14 @@ public class CategoryControllerTest {
 				.andExpect(status().isOk());
 
 	}
+
 	@Test
 	@DisplayName("Deletar Categoria")
 	void delete_WhenDeleteCategory_ExpectedSucess() throws Exception {
 		doNothing().when(categoryService).delete(1L);
-		
-		mockMvc.perform(delete("/categorias/1").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
+
+		mockMvc.perform(delete("/categorias/1").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNoContent());
 	}
 
 	@Test

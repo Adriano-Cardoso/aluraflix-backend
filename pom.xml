@@ -77,6 +77,7 @@
 		</dependency>
 	</dependencies>
 
+
 	<build>
 		<plugins>
 			<plugin>
@@ -208,6 +209,7 @@
 						<exclude>br/com/adriano/aluraflix/repository/*/**</exclude>
 						<exclude>br/com/adriano/aluraflix/validations/*/**</exclude>
 						<exclude>br/com/adriano/aluraflix/AluraflixApplication.*</exclude>
+						<exclude>br/com/adriano/aluraflix/service/LoginService.*</exclude>
 					</excludes>
 				</configuration>
 			</plugin>

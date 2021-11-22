@@ -64,12 +64,12 @@ public class CategoryService {
 
 	@Validated(OnUpdate.class)
 	@Transactional
-	public CategoryResponse updateCategory(Long CategoryId, @Valid CategoryRequest categoryRequest) {
-		Category category = this.categoryRepository.findById(CategoryId)
+	public CategoryResponse updateCategory(Long categoryId, @Valid CategoryRequest categoryRequest) {
+		Category category = this.categoryRepository.findById(categoryId)
 				.orElseThrow(Message.NOT_FOUND_ID::asBusinessException);
 
 		category.update(categoryRequest);
-		log.info("method=update CategoryId={} title={} color={}", CategoryId, category.getTitle(), category.getColor());
+		log.info("method=update CategoryId={} title={} color={}", categoryId, category.getTitle(), category.getColor());
 		return category.toDto();
 
 	}
@@ -83,16 +83,8 @@ public class CategoryService {
 
 	}
 
-//	public Categoria findById(Long categoryId) {
-//
-//		log.info("method=listAllCategorias");
-//
-//		return categoriaRepository.findById(categoryId)
-//				.orElseThrow(() -> Message.NOT_FOUND_CATEGORY.asBusinessException());
-//	}
-
 	public Category findById(Long categoryId) {
-		
+
 		log.info("method=findById");
 		return categoryRepository.findById(categoryId)
 				.orElseThrow(() -> Message.NOT_FOUND_CATEGORY.asBusinessException());

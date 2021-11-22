@@ -66,7 +66,8 @@ public class VideoScenarioFactory {
 	}
 
 	private static VideoRequest createNewRequest() {
-		return VideoRequest.builder().title("teste").description("teste 01").url("teste").categoryId(1L).build();
+		VideoRequest videoRequest = new VideoRequest("teste", "teste 01", "teste", 2L);
+		return videoRequest;
 	}
 
 	private static VideoUpdateRequest updateRequest() {

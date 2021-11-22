@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.adriano.aluraflix.domain.dto.request.UserRequest;
-import br.com.adriano.aluraflix.domain.dto.response.UsuarioResponse;
+import br.com.adriano.aluraflix.domain.dto.response.UserResponse;
 import br.com.adriano.aluraflix.service.UserService;
 import lombok.AllArgsConstructor;
 
@@ -20,7 +20,7 @@ public class UserController {
 	private UserService userService;
 
 	@PostMapping
-	public ResponseEntity<UsuarioResponse> createUser(@RequestBody UserRequest userRequest) {
+	public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(userRequest));
 	}
 }

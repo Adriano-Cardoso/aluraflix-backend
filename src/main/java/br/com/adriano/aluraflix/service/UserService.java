@@ -15,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import br.com.adriano.aluraflix.domain.Profile;
 import br.com.adriano.aluraflix.domain.User;
 import br.com.adriano.aluraflix.domain.dto.request.UserRequest;
-import br.com.adriano.aluraflix.domain.dto.response.UsuarioResponse;
+import br.com.adriano.aluraflix.domain.dto.response.UserResponse;
 import br.com.adriano.aluraflix.repository.ProfileRepository;
 import br.com.adriano.aluraflix.repository.UserRepository;
 import br.com.adriano.aluraflix.validations.Message;
@@ -40,7 +40,7 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(Message.NOT_FOT_USER_PERMISSION::asBusinessException);
     }
 
-    public UsuarioResponse save(@Valid UserRequest userRequest) {
+    public UserResponse save(@Valid UserRequest userRequest) {
      
         userRepository.findByEmail(userRequest.getEmail()).ifPresent(p -> {
             throw Message.IS_PRESENT_USER.asBusinessException();
