@@ -31,7 +31,7 @@ public class VideoController {
 
 	private VideoService videoService;
 
-	@ApiOperation(value = "Buscar todos os videos")
+	@ApiOperation(value = "Buscar videos atraves do titulo")
 	@GetMapping
 	public ResponseEntity<Page<VideoResponse>> listAllVideos(
 			@RequestParam(required = false, defaultValue = "0", name = "page") int page,
