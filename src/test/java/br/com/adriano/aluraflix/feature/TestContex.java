@@ -2,7 +2,6 @@ package br.com.adriano.aluraflix.feature;
 
 import static java.lang.ThreadLocal.withInitial;
 
-
 import java.util.HashMap;
 import java.util.Map;
 

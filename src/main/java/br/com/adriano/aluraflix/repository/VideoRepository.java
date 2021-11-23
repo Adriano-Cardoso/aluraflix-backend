@@ -15,15 +15,15 @@ import br.com.adriano.aluraflix.domain.dto.response.VideoResponse;
 @Repository
 public interface VideoRepository extends JpaRepository<Video, Long> {
 
-	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.category.categoryId, v.category.title, v.category.color) From Video v where v.title=:title")
+	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.categoryId) From Video v where v.title=:title")
 	Page<VideoResponse> findAllVideos(Pageable page,@Param("title") String title);
 
-	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.category.categoryId, v.category.title, v.category.color) From Video v where v.title=:title")
+	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.categoryId) From Video v where v.title=:title")
 	Optional<VideoResponse> findByTitle(@Param("title") String title);
 
-	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.category.categoryId, v.category.title, v.category.color) FROM Video v where v.categoryId=:category")
+	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.categoryId) FROM Video v where v.categoryId=:category")
 	Page<VideoResponse> findByCategory(@Param("category") Long category, Pageable page);
 	
-	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.category.categoryId, v.category.title, v.category.color) FROM Video v")
+	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.categoryId) FROM Video v")
     Page<VideoResponse> findAllVideoFree(Pageable page);
 }

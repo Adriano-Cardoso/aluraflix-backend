@@ -9,10 +9,8 @@ import org.springframework.data.domain.PageRequest;
 
 import br.com.adriano.aluraflix.domain.Category;
 import br.com.adriano.aluraflix.domain.Video;
-import br.com.adriano.aluraflix.domain.dto.request.CategoryRequest;
 import br.com.adriano.aluraflix.domain.dto.request.VideoRequest;
 import br.com.adriano.aluraflix.domain.dto.request.VideoUpdateRequest;
-import br.com.adriano.aluraflix.domain.dto.response.CategoryResponse;
 import br.com.adriano.aluraflix.domain.dto.response.VideoResponse;
 
 public class VideoScenarioFactory {
@@ -31,7 +29,7 @@ public class VideoScenarioFactory {
 		PageRequest page = PageRequest.of(0, 10);
 
 		VideoResponse videoResponse = new VideoResponse(4L, "Curso de Java- Iniciando", "Curso de Java para iniciantes",
-				"http://testewa.com.br", 1L, "Azul", "Catgoria 1");
+				"http://testewa.com.br", 1L);
 
 		List<VideoResponse> list = new ArrayList<>();
 		list.add(videoResponse);
@@ -42,7 +40,7 @@ public class VideoScenarioFactory {
 		PageRequest page = PageRequest.of(0, 10);
 
 		VideoResponse video = new VideoResponse(4L, "Curso de Java- Iniciando", "Curso de Java para iniciantes",
-				"http://testewa.com.br", 1L, "teste", "teste");
+				"http://testewa.com.br", 1L);
 
 		List<VideoResponse> list = new ArrayList<>(); 
 
@@ -63,13 +61,13 @@ public class VideoScenarioFactory {
 	}
 
 	private static VideoResponse createExistsControllerResponse() {
-		VideoResponse videoResponse = new VideoResponse(1L, "teste 01", "teste", "teste", 2L, "title", "title");
+		VideoResponse videoResponse = new VideoResponse(1L, "teste 01", "teste", "teste", 2L);
 		return videoResponse;
 	}
 
 	private static VideoRequest createNewRequest() {
-		return VideoRequest.builder().title("teste").description("teste 01").url("teste")
-				.categoryId(new CategoryRequest("title", "title")).build();
+		VideoRequest videoRequest = new VideoRequest("teste", "teste 01", "teste", 2L);
+		return videoRequest;
 	}
 
 	private static VideoUpdateRequest updateRequest() {
@@ -78,9 +76,7 @@ public class VideoScenarioFactory {
 	}
 
 	private static VideoResponse findVideos() {
-		VideoResponse video = new VideoResponse(4L, "Curso de Agil", "Curso iniciante", "http://testewa.com.br",
-				new CategoryResponse(2L, "Categoria 2", "Branca"));
-
+		VideoResponse video = new VideoResponse(4L, "Curso de Agil", "Curso iniciante", "http://testewa.com.br", 1L);
 		return video;
 	}
 

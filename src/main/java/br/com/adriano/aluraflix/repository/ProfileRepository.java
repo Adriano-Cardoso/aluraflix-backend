@@ -1,4 +1,4 @@
-package br.com.adriano.aluraflix.service;
+package br.com.adriano.aluraflix.repository;
 
 import java.util.Optional;
 

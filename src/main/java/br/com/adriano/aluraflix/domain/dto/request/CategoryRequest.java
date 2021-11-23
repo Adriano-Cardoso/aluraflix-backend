@@ -20,13 +20,13 @@ public class CategoryRequest {
 	@NotBlank(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' esta invalido")
 	@NotNull(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' esta invalido")
 	@NotEmpty(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' esta invalido")
-	@ApiModelProperty(position = 2, required = false, value = "titulo da categoria", name = "title", dataType = "String", example = "categoria 1")
+	@ApiModelProperty(position = 1, required = false, value = "titulo da categoria", name = "title", dataType = "String", example = "Terror")
 	private String title;
 
 	@NotBlank(groups={OnCreate.class, OnUpdate.class},message = "O campo 'color' esta invalido")
 	@NotNull(groups={OnCreate.class, OnUpdate.class},message = "O campo 'color' esta invalido")
 	@NotEmpty(groups={OnCreate.class, OnUpdate.class},message = "O campo 'color' esta invalido")
-	@ApiModelProperty(position = 2, required = false, value = "cor da categoria", name = "cpçpr", dataType = "String", example = "Vermelho")
+	@ApiModelProperty(position = 2, required = false, value = "cor da categoria", name = "color", dataType = "String", example = "Vermelho")
 	private String color;
 	
 

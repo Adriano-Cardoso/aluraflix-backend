@@ -36,6 +36,6 @@ public class VideoRequest {
 	private String url;
 	
 	@ApiModelProperty(position = 3, required = false, value = "categoria do video", name = "categoryId", dataType = "Long", example = "1")
-	private CategoryRequest categoryId;
+	private Long categoryId;
 
 }
