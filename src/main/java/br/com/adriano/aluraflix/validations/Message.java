@@ -9,13 +9,14 @@ public enum Message {
 	NOT_FOUND_VIDEO("O video nao foi encontrado", HttpStatus.NOT_FOUND),
 	VIDEO_EXIST("O video ja existe", HttpStatus.BAD_REQUEST),
 	CATEGORY_EXIST("A categoria ja existe", HttpStatus.BAD_REQUEST),
-	NOT_FOUND_ID("O id não existe", HttpStatus.NOT_FOUND),
+	NOT_FOUND_ID("O id nao existe", HttpStatus.NOT_FOUND),
 	CATEGORY_TITLE_EXIST("O titulo da categoria nao existe", HttpStatus.NOT_FOUND),
-	USER_NOT_FOUND("O Usuario não foi encontrado"), NAME_PROFILE_NOT_FOUND("E-mail ou senha não encontrados"),
-	TOKEN_ERROR("Token inválido"), 
-	NOT_FOT_USER_PERMISSION("O Usuário não tem permissão", HttpStatus.NOT_FOUND),
-	IS_PRESENT_USER("Usuário presente ", HttpStatus.BAD_REQUEST), 
-	NOT_FOUND_CATEGORY("A categoria não foi encontrada ", HttpStatus.NOT_FOUND);
+	USER_NOT_FOUND("O Usuario nao foi encontrado"), 
+	NAME_PROFILE_NOT_FOUND("E-mail ou senha nao encontrados"),
+	TOKEN_ERROR("Token invalido"), 
+	NOT_FOT_USER_PERMISSION("O Usuario nao tem permissao", HttpStatus.NOT_FOUND),
+	IS_PRESENT_USER("Usuario presente ", HttpStatus.BAD_REQUEST), 
+	NOT_FOUND_CATEGORY("A categoria nao foi encontrada ", HttpStatus.NOT_FOUND);
 
 	private String value;
 	private String description;

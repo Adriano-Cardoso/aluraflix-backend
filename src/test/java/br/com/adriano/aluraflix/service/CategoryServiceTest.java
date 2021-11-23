@@ -3,6 +3,7 @@ package br.com.adriano.aluraflix.service;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -60,7 +61,7 @@ public class CategoryServiceTest {
 	
 	@Test
 	@DisplayName("Listar categoria por id valido")
-	void findById_WhenIdIsValid_ExpectedSucess() {
+	void finByCategoryId_WhenIdIsValid_ExpectedSucess() {
 		when(this.categoryRepository.findById(any())).thenReturn(Optional.of(CategoryScenarioFactory.CATEGORY_ID_VALID));
 		
 		assertNotNull(this.categoryService.finByCategoryId(any()));
@@ -70,7 +71,7 @@ public class CategoryServiceTest {
 	
 	@Test
 	@DisplayName("Listar categoria por id invalido")
-	void findById_WhenIdInValid_ExpectedException() {
+	void finByCategoryId_WhenIdInValid_ExpectedException() {
 		when(this.categoryRepository.findById(any())).thenReturn(Optional.empty());
 		
 		assertThrows(BusinessException.class, () -> this.categoryService.finByCategoryId(10L));
@@ -132,6 +133,26 @@ public class CategoryServiceTest {
 
 		assertThrows(BusinessException.class, () -> this.categoryService.delete(7L));
 	}
+	
+	@Test
+	@DisplayName("listar id valido")
+	void findById_WhenIdIsValid_ExpectedOk() {
+		when(this.categoryRepository.findById(anyLong())).thenReturn(Optional.of(CategoryScenarioFactory.CATEGORY_ID_VALID));
+		assertNotNull(categoryService.findById(anyLong()));
+		verify(categoryRepository).findById(any());
+	}
+	
+	@Test
+	@DisplayName("Listar por id invalido")
+	void findById_WhenIdInValid_ExpectedException() {
+		when(this.categoryRepository.findById(any())).thenReturn(Optional.empty());
+		
+		assertThrows(BusinessException.class, () -> this.categoryService.findById(10L));
+		
+		verify(categoryRepository).findById(any());
+	}
+
+	
 
 	
 }
