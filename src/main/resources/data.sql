@@ -1,10 +1,3 @@
-
-/*CREATE TABLE tb_user_profile(
-     user_id bigint NOT NULL,
-     profile_id bigint NOT NULL
-); */
-
-
 ALTER TABLE TB_VIDEO add FOREIGN KEY(categoria_id) REFERENCES TB_CATEGORIA(categoria_id);
 
 INSERT INTO TB_USER(username, email, password_user) VALUES('Aluno', 'aluno@email.com', '$2a$10$ScxWIRKjc4MAX4czBWFC1.A2BjxMdflbo3dgMmqdY8a.MirR2OPVS');
