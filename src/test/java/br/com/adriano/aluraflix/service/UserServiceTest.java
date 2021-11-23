@@ -50,7 +50,7 @@ public class UserServiceTest {
 	}
 
 	@Test
-	@DisplayName("Procurar usuario pelo email mas não existe")
+	@DisplayName("Procurar usuario pelo email mas nao existe")
 	public void loadUserByUsername_WhenUsernameIsInvalid_ExpectedOk() {
 
 		when(userRepository.findByEmail(anyString())).thenThrow(BusinessException.class);
@@ -59,7 +59,7 @@ public class UserServiceTest {
 	}
 	
     @Test
-    @DisplayName("Criar usuário")
+    @DisplayName("Criar usuario")
     public void save_WhenEmailIsValid_ExpectedCreate() {
 
         when(userRepository.findByEmail(any())).thenReturn(Optional.empty());
@@ -74,7 +74,7 @@ public class UserServiceTest {
     }
 
     @Test
-    @DisplayName("Criar usuário, mas não existe o perfil")
+    @DisplayName("Criar usuario, mas nao existe o perfil")
     public void save_WhenProfileIsInvalid_ExpectedBusiness() {
 
         when(userRepository.findByEmail(any())).thenReturn(Optional.empty());
@@ -86,7 +86,7 @@ public class UserServiceTest {
     }
 
     @Test
-    @DisplayName("Criar usuário mas já existe no banco")
+    @DisplayName("Criar usuario mas ja existe no banco")
     public void save_WhenEmailIsInvalid_ExpectedCreate() {
 
         when(userRepository.findByEmail(anyString())).thenReturn(UserScenarioFactory.USER);

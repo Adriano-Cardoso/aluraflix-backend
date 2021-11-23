@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 @Getter
 public class UserRequest {
 	
-	@NotNull(message = "O campo 'email' no corpo da requisição")
-	@Email(message = "Formato do email está errado")
+	@NotNull(message = "O campo 'email' no corpo da requisicao")
+	@Email(message = "Formato do email esta errado")
 	private String email;
-	@NotNull(message = "O campo 'username' no corpo da requisição")
+	@NotNull(message = "O campo 'username' no corpo da requisicao")
 	private String username;
-	@NotNull(message = "O campo 'password' no corpo da requisição")
+	@NotNull(message = "O campo 'password' no corpo da requisicao")
 	private String password;
 
 }
