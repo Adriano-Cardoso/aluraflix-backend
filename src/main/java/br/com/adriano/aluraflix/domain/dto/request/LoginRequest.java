@@ -19,7 +19,7 @@ public class LoginRequest {
 	
     @NotNull(message = "O campo 'email' no corpo da requisicao")
     @Email(message = "Formato do email esta errado")
-    @ApiModelProperty(position = 1, required = false, value = "login do usuario", name = "email", dataType = "String", example = "teste@teste.com")
+    @ApiModelProperty(position = 1, required = false, value = "login do usuario", name = "email", dataType = "String", example = "admin@teste.com")
     private String email;
 
     @NotNull(message = "O campo 'password' no corpo da requisicao")

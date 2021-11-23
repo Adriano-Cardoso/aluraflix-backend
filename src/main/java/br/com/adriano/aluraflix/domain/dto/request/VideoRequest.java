@@ -20,7 +20,7 @@ public class VideoRequest {
 	@NotBlank(groups = {OnCreate.class}, message = "O campo 'title'  esta invalido")
 	@NotNull(groups = {OnCreate.class}, message = "O campo 'title' esta invalido")
 	@NotEmpty(groups = {OnCreate.class}, message = "O campo 'title' esta invalido")
-	@ApiModelProperty(position = 2, required = false, value = "titulo do video", name = "title", dataType = "String", example = "Curso de Java- Iniciando")
+	@ApiModelProperty(position = 2, required = false, value = "titulo do video", name = "title", dataType = "String", example = "Curso de Java- Iniciando-spring-boot")
 	private String title;
 	
 	@NotBlank(groups = {OnCreate.class}, message = "O campo 'description' esta invalido")
