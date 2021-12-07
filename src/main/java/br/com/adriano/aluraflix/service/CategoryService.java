@@ -1,10 +1,11 @@
 package br.com.adriano.aluraflix.service;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -24,10 +25,17 @@ public class CategoryService {
 
 	private CategoryRepository categoryRepository;
 
-	public List<CategoryResponse> listAllCategory() {
+	public Page<CategoryResponse> listAllCategory() {
+		int limit = 3;
+		int page = 0;
 
 		log.info("method=listAllCategory");
-		return this.categoryRepository.listAllCategory();
+
+		Pageable pageable = PageRequest.of(page, limit);
+
+		log.info("method=listAllCategory limit{}", limit);
+
+		return this.categoryRepository.listAllCategory(pageable);
 
 	}
 
@@ -41,7 +49,7 @@ public class CategoryService {
 	public CategoryResponse finByCategoryId(Long categoryId) {
 		Category category = this.categoryRepository.findById(categoryId)
 				.orElseThrow(() -> Message.NOT_FOUND_ID.asBusinessException());
-		log.info("method=findByVideoId videoId={}", categoryId);
+		log.info("method=finByCategoryId categoryId={}", categoryId);
 
 		return category.toDto();
 	}
@@ -55,7 +63,7 @@ public class CategoryService {
 
 		this.categoryRepository.save(category);
 
-		log.info("method=create categoryId={} title={} color={}", category.getCategoryId(), category.getTitle(),
+		log.info("method=createCategory categoryId={} title={} color={}", category.getCategoryId(), category.getTitle(),
 				category.getColor());
 
 		return category.toDto();
@@ -69,7 +77,8 @@ public class CategoryService {
 				.orElseThrow(Message.NOT_FOUND_ID::asBusinessException);
 
 		category.update(categoryRequest);
-		log.info("method=update CategoryId={} title={} color={}", categoryId, category.getTitle(), category.getColor());
+		log.info("method=update updateCategory={} title={} color={}", categoryId, category.getTitle(),
+				category.getColor());
 		return category.toDto();
 
 	}
@@ -79,7 +88,7 @@ public class CategoryService {
 				.orElseThrow(Message.NOT_FOUND_ID::asBusinessException);
 
 		this.categoryRepository.delete(category);
-		log.info("method=delete videoId={}", category.getCategoryId());
+		log.info("method=delete categoryId={}", category.getCategoryId());
 
 	}
 

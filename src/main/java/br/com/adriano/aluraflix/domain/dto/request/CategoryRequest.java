@@ -15,19 +15,17 @@ import lombok.Getter;
 @Getter
 @Builder
 public class CategoryRequest {
-	
 
-	@NotBlank(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' esta invalido")
-	@NotNull(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' esta invalido")
-	@NotEmpty(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' esta invalido")
-	@ApiModelProperty(position = 1, required = false, value = "titulo da categoria", name = "title", dataType = "String", example = "Terror")
+	@NotBlank(groups = { OnCreate.class, OnUpdate.class }, message = "O campo 'title' esta invalido")
+	@NotNull(groups = { OnCreate.class, OnUpdate.class }, message = "O campo 'title' esta invalido")
+	@NotEmpty(groups = { OnCreate.class, OnUpdate.class }, message = "O campo 'title' esta invalido")
+	@ApiModelProperty(position = 1, required = false, value = "titulo da categoria", name = "title", dataType = "String", example = "Basico")
 	private String title;
 
-	@NotBlank(groups={OnCreate.class, OnUpdate.class},message = "O campo 'color' esta invalido")
-	@NotNull(groups={OnCreate.class, OnUpdate.class},message = "O campo 'color' esta invalido")
-	@NotEmpty(groups={OnCreate.class, OnUpdate.class},message = "O campo 'color' esta invalido")
+	@NotBlank(groups = { OnCreate.class, OnUpdate.class }, message = "O campo 'color' esta invalido")
+	@NotNull(groups = { OnCreate.class, OnUpdate.class }, message = "O campo 'color' esta invalido")
+	@NotEmpty(groups = { OnCreate.class, OnUpdate.class }, message = "O campo 'color' esta invalido")
 	@ApiModelProperty(position = 2, required = false, value = "cor da categoria", name = "color", dataType = "String", example = "Vermelho")
 	private String color;
-	
 
 }

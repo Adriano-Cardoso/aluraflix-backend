@@ -3,6 +3,10 @@ package br.com.adriano.aluraflix.feature;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+
 import br.com.adriano.aluraflix.domain.Category;
 import br.com.adriano.aluraflix.domain.dto.request.CategoryRequest;
 import br.com.adriano.aluraflix.domain.dto.response.CategoryResponse;
@@ -11,7 +15,7 @@ public class CategoryScenarioFactory {
 
 	public static final Category CATEGORY = loadCategory();
 	public static final CategoryResponse CATEGORY_RESPONSE = loadCategoryResponse();
-	public static final List<CategoryResponse> LIST_ALL_CATEGORY = loadListCategory();
+	public static final Page<CategoryResponse> LIST_ALL_CATEGORY = loadListCategory();
 	public static final Category FIND_BY_TITLE = loadTitleValid();
 	public static final Category CATEGORY_ID_VALID = loadCategoryByIdValid();
 	public static final CategoryRequest CREATE_CATEGORY = CreateCategoryRequest();
@@ -30,11 +34,15 @@ public class CategoryScenarioFactory {
 		return new CategoryResponse(1L, "title", "color");
 	}
 
-	private static List<CategoryResponse> loadListCategory() {
-		CategoryResponse category = new CategoryResponse(1L, "title", "color");
-		List<CategoryResponse> CategoryResponse = new ArrayList<>();
-		CategoryResponse.add(category);
-		return CategoryResponse;
+	private static Page<CategoryResponse> loadListCategory() {
+		PageRequest page = PageRequest.of(0, 10);
+
+		CategoryResponse categoryResponse = new CategoryResponse(1L, "title", "color");
+
+		List<CategoryResponse> list = new ArrayList<>();
+		list.add(categoryResponse);
+		return new PageImpl<>(list, page, 10);
+		
 	}
 
 	private static Category loadTitleValid() {

@@ -28,7 +28,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-@Table(name="TB_USER")
+@Table(name = "TB_USER")
 public class User implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
@@ -46,7 +46,7 @@ public class User implements UserDetails {
 
 	@Column(name = "password_user", nullable = false)
 	private String password;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Profile> perfis;
 
@@ -86,11 +86,8 @@ public class User implements UserDetails {
 	}
 
 	public UserResponse toDto() {
-	      return UserResponse.builder()
-	                .email(this.email)
-	                .username(this.name)
-	                .build();
-	    
+		return UserResponse.builder().email(this.email).username(this.name).build();
+
 	}
 
 }

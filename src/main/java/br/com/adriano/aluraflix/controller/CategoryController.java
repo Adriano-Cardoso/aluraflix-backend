@@ -1,9 +1,8 @@
 package br.com.adriano.aluraflix.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,7 +31,7 @@ public class CategoryController {
 
 	@ApiOperation(value = "Listar categorias")
 	@GetMapping
-	public ResponseEntity<List<CategoryResponse>> listAllCategory() {
+	public ResponseEntity<Page<CategoryResponse>> listAllCategory() {
 		return ResponseEntity.status(HttpStatus.OK).body(this.categoryService.listAllCategory());
 	}
 

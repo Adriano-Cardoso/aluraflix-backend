@@ -1,5 +1,6 @@
 package br.com.adriano.aluraflix.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -7,7 +8,6 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +16,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import br.com.adriano.aluraflix.domain.dto.response.CategoryResponse;
 import br.com.adriano.aluraflix.exception.BusinessException;
@@ -35,9 +37,12 @@ public class CategoryServiceTest {
 	@Test
 	@DisplayName("Listar todas categorias")
 	void list_WhenListAllValid_ExpectedSucess() {
-		when(this.categoryRepository.listAllCategory()).thenReturn(CategoryScenarioFactory.LIST_ALL_CATEGORY);
-		List<CategoryResponse> categoryResponse = categoryService.listAllCategory();
-		assertNotNull(categoryResponse);
+		when(this.categoryRepository.listAllCategory(any(Pageable.class))).thenReturn(CategoryScenarioFactory.LIST_ALL_CATEGORY);
+		Page<CategoryResponse> categoryResponse = categoryService.listAllCategory();
+		
+		assertEquals(CategoryScenarioFactory.LIST_ALL_CATEGORY, categoryResponse);
+
+		verify(categoryRepository).listAllCategory(any());
 	} 
 	@Test
 	@DisplayName("Listar categoria por titulo valido")

@@ -19,7 +19,7 @@ Os times de frontend e UI já estão trabalhando no layout e nas telas. Para o b
 	
 # Usuario
        • email: admin@email.com
-       • password: 123456
+       • password: 12345
 
 # Executando o projeto localmente
 
