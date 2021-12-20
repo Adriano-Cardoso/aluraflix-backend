@@ -13,6 +13,7 @@ import br.com.adriano.aluraflix.domain.dto.request.CategoryRequest;
 import br.com.adriano.aluraflix.domain.dto.response.CategoryResponse;
 import br.com.adriano.aluraflix.repository.CategoryRepository;
 import br.com.adriano.aluraflix.validations.Message;
+import br.com.adriano.aluraflix.validations.OnCreate;
 import br.com.adriano.aluraflix.validations.OnUpdate;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +47,8 @@ public class CategoryService {
 		return category.toDto();
 	}
 
-	public CategoryResponse createCategory(CategoryRequest categoryRequest) {
+	@Validated(OnCreate.class)
+	public CategoryResponse createCategory(@Valid CategoryRequest categoryRequest) {
 		this.categoryRepository.findByTitle(categoryRequest.getTitle()).ifPresent(t -> {
 			throw Message.CATEGORY_EXIST.asBusinessException();
 		});
