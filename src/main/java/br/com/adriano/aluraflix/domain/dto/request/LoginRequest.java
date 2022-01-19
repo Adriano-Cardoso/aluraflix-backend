@@ -23,7 +23,7 @@ public class LoginRequest {
     @ApiModelProperty(position = 1, required = false, value = "login do usuario", name = "email", dataType = "String", example = "aluno@teste.com")
     private String email;
 
-	@NotNull(groups = {OnCreate.class}, message = "O campo 'password' esta incorreto no corpo da requisicao")
+	@NotNull(groups = {OnCreate.class}, message = "O campo 'password' esta incorreto no corpo da requisicao!")
     @ApiModelProperty(position = 1, required = false, value = "senha do usuario", name = "password", dataType = "String", example = "123456")
     private String password;
 
