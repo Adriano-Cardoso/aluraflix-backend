@@ -79,11 +79,11 @@ public class VideoService {
 		int limit = 3;
 		int page = 0;
 
-		log.info("method=listAllVideos");
+		log.info("method=free");
 
 		Pageable pageable = PageRequest.of(page, limit);
 
-		log.info("method=listAllVideos limit{}", limit);
+		log.info("method=free limit{}", limit);
 
 		return this.videoRepository.findAllVideoFree(pageable);
 	}
@@ -109,7 +109,7 @@ public class VideoService {
 	public Page<VideoResponse> listByCategory(int page, int limit, Long category) {
 		Pageable pageable = PageRequest.of(page, limit);
 
-		log.info("method=findByCategory page={} limit={} categoryId={}", page, limit, category);
+		log.info("method=listByCategory page={} limit={} categoryId={}", page, limit, category);
 
 		return videoRepository.findByCategory(category, pageable);
 

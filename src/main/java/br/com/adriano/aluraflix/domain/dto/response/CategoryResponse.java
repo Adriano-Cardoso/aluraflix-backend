@@ -14,7 +14,7 @@ public class CategoryResponse {
 	
 	@ApiModelProperty(position = 1, required = false, value = "id da Categoria", name = "categoryId", dataType = "Long", example = "1")
 	private Long categoryId;
-	@ApiModelProperty(position = 2, required = false, value = "titulo da categoria", name = "titulo", dataType = "String", example = "categoria 1")
+	@ApiModelProperty(position = 2, required = false, value = "titulo da categoria", name = "titulo", dataType = "String", example = "Basico")
 	private String title;
 	@ApiModelProperty(position = 3, required = false, value = "cor da categoria", name = "color", dataType = "String", example = "Vermelho")
 	private String color;

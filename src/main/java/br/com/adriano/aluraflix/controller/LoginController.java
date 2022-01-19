@@ -11,15 +11,13 @@ import br.com.adriano.aluraflix.domain.dto.response.LoginResponse;
 import br.com.adriano.aluraflix.service.LoginService;
 import lombok.AllArgsConstructor;
 
-
 @RequestMapping("/auth")
 @AllArgsConstructor
 @RestController
 public class LoginController {
 
-	
 	private LoginService loginService;
-	
+
 	@PostMapping
 	public ResponseEntity<LoginResponse> auth(@RequestBody LoginRequest loginRequest) {
 		return ResponseEntity.ok(loginService.auth(loginRequest));

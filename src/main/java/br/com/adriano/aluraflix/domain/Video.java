@@ -58,7 +58,6 @@ public class Video {
 				.url(videoRequest.getUrl()).build();
 
 	}
-	
 
 	public void addCategory(Category category) {
 		this.category = category;

@@ -19,21 +19,29 @@ import br.com.adriano.aluraflix.domain.dto.response.LoginResponse;
 @Service("LoginService")
 @Validated
 public class LoginService {
-	
-    @Autowired
+
+	@Autowired
 	private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
+	@Autowired
+	private JwtTokenProvider jwtTokenProvider;
 
+	public LoginResponse auth(@Valid LoginRequest loginRequest) {
+
+<<<<<<< HEAD
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+=======
     
     public LoginResponse auth(@Valid LoginRequest loginRequest) {
      
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),loginRequest.getPassword()));
+>>>>>>> feature/semana-3
 
-        String token=jwtTokenProvider.createToken(loginRequest.getEmail(),authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()));
+		String token = jwtTokenProvider.createToken(loginRequest.getEmail(), authentication.getAuthorities().stream()
+				.map(GrantedAuthority::getAuthority).collect(Collectors.toList()));
 
-        return new LoginResponse(token,"Bearer");
-    }
+		return new LoginResponse(token, "Bearer");
+	}
 
 }

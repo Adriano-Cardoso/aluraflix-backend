@@ -14,29 +14,27 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
 public class JwtTokenFilter extends GenericFilterBean {
-    
-    @Autowired
-    private JwtTokenProvider tokenProvider;
 
-    public JwtTokenFilter(JwtTokenProvider tokenProvider) {
-        this.tokenProvider = tokenProvider;
-    }
+	@Autowired
+	private JwtTokenProvider tokenProvider;
 
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
+	public JwtTokenFilter(JwtTokenProvider tokenProvider) {
+		this.tokenProvider = tokenProvider;
+	}
 
-        String token = tokenProvider.resolveToken((HttpServletRequest) request);
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 
-        if (token != null && tokenProvider.validateToken(token)) {
-            Authentication auth = tokenProvider.getAuthentication(token);
-            if (auth != null) {
-                SecurityContextHolder.getContext().setAuthentication(auth);
-            }
-        }
-        chain.doFilter(request, response);
-    }
+		String token = tokenProvider.resolveToken((HttpServletRequest) request);
 
+		if (token != null && tokenProvider.validateToken(token)) {
+			Authentication auth = tokenProvider.getAuthentication(token);
+			if (auth != null) {
+				SecurityContextHolder.getContext().setAuthentication(auth);
+			}
+		}
+		chain.doFilter(request, response);
+	}
 
-    
 }

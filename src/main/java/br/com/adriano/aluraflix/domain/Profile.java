@@ -18,20 +18,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Table(name = "tb_profile")
-public class Profile implements GrantedAuthority{
+public class Profile implements GrantedAuthority {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "profile_id",nullable = false)
-    private Long profileId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "profile_id", nullable = false)
+	private Long profileId;
 
-    @Column(name = "name_profile",nullable = false,columnDefinition = "VARCHAR2(255)")
-    private String name;
+	@Column(name = "name_profile", nullable = false, columnDefinition = "VARCHAR2(255)")
+	private String name;
 
-    @Override
-    public String getAuthority() {
-        return name;
-    }
+	@Override
+	public String getAuthority() {
+		return name;
+	}
 }

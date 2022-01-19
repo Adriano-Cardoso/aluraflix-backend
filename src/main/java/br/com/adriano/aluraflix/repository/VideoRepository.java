@@ -16,14 +16,14 @@ import br.com.adriano.aluraflix.domain.dto.response.VideoResponse;
 public interface VideoRepository extends JpaRepository<Video, Long> {
 
 	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.categoryId) From Video v where v.title=:title")
-	Page<VideoResponse> findAllVideos(Pageable page,@Param("title") String title);
+	Page<VideoResponse> findAllVideos(Pageable page, @Param("title") String title);
 
 	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.categoryId) From Video v where v.title=:title")
 	Optional<VideoResponse> findByTitle(@Param("title") String title);
 
-	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.categoryId) FROM Video v where v.categoryId=:category")
+	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.categoryId) FROM Video v where v.category=:category")
 	Page<VideoResponse> findByCategory(@Param("category") Long category, Pageable page);
-	
+
 	@Query("select new br.com.adriano.aluraflix.domain.dto.response.VideoResponse(v.videoId, v.title, v.description, v.url, v.categoryId) FROM Video v")
-    Page<VideoResponse> findAllVideoFree(Pageable page);
+	Page<VideoResponse> findAllVideoFree(Pageable page);
 }

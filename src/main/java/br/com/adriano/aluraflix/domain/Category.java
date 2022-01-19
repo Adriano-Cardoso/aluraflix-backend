@@ -21,24 +21,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "tb_categoria")
 public class Category {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "categoria_id", nullable = false)
 	private Long categoryId;
-	
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "titulo", nullable = false)
 	private String title;
-	
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cor", nullable = false)
 	private String color;
-	
+
 	public CategoryResponse toDto() {
 		return CategoryResponse.builder().categoryId(this.categoryId).title(this.title).color(this.color).build();
 	}
-	
+
 	public static Category of(CategoryRequest categoryRequest) {
 		return Category.builder().title(categoryRequest.getTitle()).color(categoryRequest.getColor()).build();
 	}
@@ -46,8 +46,7 @@ public class Category {
 	public void update(CategoryRequest categoryRequest) {
 		this.title = categoryRequest.getTitle();
 		this.color = categoryRequest.getColor();
-		
-		
+
 	}
 
 }

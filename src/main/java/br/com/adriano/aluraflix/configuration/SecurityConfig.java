@@ -19,10 +19,10 @@ import br.com.adriano.aluraflix.configuration.security.JwtTokenProvider;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Autowired
-    private Environment env;
-	
+	private Environment env;
+
 	@Autowired
 	private JwtTokenProvider jwtTokenProvider;
 
