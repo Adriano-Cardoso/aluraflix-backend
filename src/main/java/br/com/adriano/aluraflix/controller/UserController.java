@@ -1,5 +1,7 @@
 package br.com.adriano.aluraflix.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +22,7 @@ public class UserController {
 	private UserService userService;
 
 	@PostMapping
-	public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {
+	public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(userRequest));
 	}
 }

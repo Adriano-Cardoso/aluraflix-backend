@@ -19,6 +19,7 @@ import br.com.adriano.aluraflix.domain.dto.response.UserResponse;
 import br.com.adriano.aluraflix.repository.ProfileRepository;
 import br.com.adriano.aluraflix.repository.UserRepository;
 import br.com.adriano.aluraflix.validations.Message;
+import br.com.adriano.aluraflix.validations.OnCreate;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,6 +41,7 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(Message.NOT_FOT_USER_PERMISSION::asBusinessException);
     }
 
+    @Validated(OnCreate.class)
     public UserResponse save(@Valid UserRequest userRequest) {
      
         userRepository.findByEmail(userRequest.getEmail()).ifPresent(p -> {

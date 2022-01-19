@@ -50,7 +50,7 @@ public class CategoryController {
 
 	@ApiOperation(value = "Atualizar categoria por id categoria")
 	@PatchMapping("/{categoryId}")
-	public ResponseEntity<CategoryResponse> updateCategory(@PathVariable("categoryId") Long categoryId,
+	public ResponseEntity<CategoryResponse> updateCategory(@Valid @PathVariable("categoryId") Long categoryId,
 			@Valid @RequestBody CategoryRequest categoryRequest) {
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(this.categoryService.updateCategory(categoryId, categoryRequest));
@@ -59,7 +59,7 @@ public class CategoryController {
 
 	@ApiOperation(value = "deletar categoria")
 	@DeleteMapping("/{categoryId}")
-	public ResponseEntity<CategoryResponse> delete(@PathVariable("categoryId") Long categoryId) {
+	public ResponseEntity<CategoryResponse> delete(@Valid @PathVariable("categoryId") Long categoryId) {
 		this.categoryService.delete(categoryId);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}

@@ -1,6 +1,12 @@
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> feature/semana-3
 ALTER TABLE TB_VIDEO add FOREIGN KEY(categoria_id) REFERENCES TB_CATEGORIA(categoria_id);
 
-INSERT INTO TB_USER(username, email, password_user) VALUES('Aluno', 'aluno@email.com', '$2a$10$ScxWIRKjc4MAX4czBWFC1.A2BjxMdflbo3dgMmqdY8a.MirR2OPVS');
+INSERT INTO TB_USER(username, email, password_user) VALUES('Admin', 'admin@email.com', '$2a$10$ScxWIRKjc4MAX4czBWFC1.A2BjxMdflbo3dgMmqdY8a.MirR2OPVS');
 
 INSERT INTO TB_CATEGORIA(categoria_id, titulo, cor) VALUES(1,'Comedia', 'Amarelo');
 INSERT INTO TB_CATEGORIA(categoria_id, titulo, cor) VALUES(2,'Livre', 'Branco');

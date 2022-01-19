@@ -12,10 +12,18 @@ import lombok.NoArgsConstructor;
 @Getter
 public class UserResponse {
 	
+<<<<<<< HEAD
 	@ApiModelProperty(position = 1, required = false, value = "email do usuario", name = "email", dataType = "String", example = "admin@teste.com")
 	private String email;
 	
 	@ApiModelProperty(position = 2, required = false, value = "username do usuario", name = "username", dataType = "String", example = "admin")
 	private String username;
+=======
+	@ApiModelProperty(position = 1, required = false, value = "email do usuario", name = "email", dataType = "String", example = "aluno@email.com")
+	private String email;
+	
+	@ApiModelProperty(position = 2, required = false, value = "senha do usuario", name = "password", dataType = "String", example = "123456")
+    private String username;
+>>>>>>> feature/semana-3
 
 }
