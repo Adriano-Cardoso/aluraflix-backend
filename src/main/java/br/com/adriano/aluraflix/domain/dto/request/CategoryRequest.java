@@ -14,23 +14,11 @@ import lombok.Getter;
 @Builder
 public class CategoryRequest {
 
-<<<<<<< HEAD
-	@NotBlank(groups = { OnCreate.class, OnUpdate.class }, message = "O campo 'title' esta invalido")
-	@NotNull(groups = { OnCreate.class, OnUpdate.class }, message = "O campo 'title' esta invalido")
-	@NotEmpty(groups = { OnCreate.class, OnUpdate.class }, message = "O campo 'title' esta invalido")
-	@ApiModelProperty(position = 1, required = false, value = "titulo da categoria", name = "title", dataType = "String", example = "Basico")
-	private String title;
-
-	@NotBlank(groups = { OnCreate.class, OnUpdate.class }, message = "O campo 'color' esta invalido")
-	@NotNull(groups = { OnCreate.class, OnUpdate.class }, message = "O campo 'color' esta invalido")
-	@NotEmpty(groups = { OnCreate.class, OnUpdate.class }, message = "O campo 'color' esta invalido")
-=======
 	@NotEmpty(groups={OnCreate.class, OnUpdate.class},message = "O campo 'title' esta invalido, no corpo da requisicao")
 	@ApiModelProperty(position = 1, required = false, value = "titulo da categoria", name = "title", dataType = "String", example = "Terror")
 	private String title;
 
 	@NotEmpty(groups={OnCreate.class, OnUpdate.class},message = "O campo 'color' esta invalido, no corpo da requisicao")
->>>>>>> feature/semana-3
 	@ApiModelProperty(position = 2, required = false, value = "cor da categoria", name = "color", dataType = "String", example = "Vermelho")
 	private String color;
 

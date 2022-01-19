@@ -83,7 +83,7 @@ public class VideoService {
 
 		Pageable pageable = PageRequest.of(page, limit);
 
-		log.info("method=free limit{}", limit);
+		log.info("method=findAllVideoFree limit{}", limit);
 
 		return this.videoRepository.findAllVideoFree(pageable);
 	}

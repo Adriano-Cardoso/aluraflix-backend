@@ -80,7 +80,7 @@ public class CategoryService {
 				.orElseThrow(Message.NOT_FOUND_ID::asBusinessException);
 
 		category.update(categoryRequest);
-		log.info("method=update updateCategory={} title={} color={}", categoryId, category.getTitle(),
+		log.info("method=updateCategory updateCategory={} title={} color={}", categoryId, category.getTitle(),
 				category.getColor());
 		return category.toDto();
 
