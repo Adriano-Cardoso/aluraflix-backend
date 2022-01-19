@@ -20,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+@Validated
 @AllArgsConstructor
 public class CategoryService {
 

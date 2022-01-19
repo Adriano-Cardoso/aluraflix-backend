@@ -26,6 +26,7 @@ public class LoginService {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
+    
     public LoginResponse auth(@Valid LoginRequest loginRequest) {
      
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),loginRequest.getPassword()));
